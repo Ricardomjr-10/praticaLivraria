@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(82, 79, 79);
+}
+
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+form {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input, select {
+    width: calc(100% - 12px);
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+select {
+    height: 30px; /* Ajuste a altura conforme necessário */
+}
+button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#mensagens {
+    margin-top: 20px;
+}
