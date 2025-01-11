@@ -15,3 +15,5 @@ conexao.connect((erro) => {
         console.log('Conectado com sucesso!')
     }
 })
+
+module.exports = conexao
