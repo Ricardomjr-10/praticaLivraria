@@ -1,5 +1,4 @@
-// import app from '../server.js'
-import conexao from '../conexao.js'   
+import conexao  from './conexao.js'  
 
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
@@ -32,10 +31,10 @@ formMontagem.addEventListener('submit', (event) => {
     cadastrarMontagem()
 })
 
-async function cadastrarAutor() {
+ function cadastrarAutor() {
     const nome = document.getElementById('nomeAutor').value
     const sql = 'INSERT INTO autor (nome) VALUES (?)'
-    await conexao.query(sql, [nome])
+     conexao.query(sql, [nome])
     document.getElementById('mensagens').innerHTML = 'Autor cadastrado com sucesso!'
 }
 
@@ -70,4 +69,5 @@ async function cadastrarMontagem() {
     await conexao.query(sql, [nome, livroId, pecas])
     document.getElementById('mensagens').innerHTML = 'Montagem cadastrada com sucesso!'
 }
+
 

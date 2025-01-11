@@ -8,12 +8,6 @@ const conexao = mysql.createConnection({
     database: 'livraria'
 })
 
-conexao.connect((erro) => {
-    if (erro) {
-        console.log(erro)
-    } else {
-        console.log('Conectado com sucesso!')
-    }
-})
+conexao.connect()
 
 export default conexao
