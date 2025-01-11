@@ -1,5 +1,5 @@
-import app from '../server.js'
-import conexao from '../conexao.js'
+// import app from '../server.js'
+import conexao from '../conexao.js'   
 
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
