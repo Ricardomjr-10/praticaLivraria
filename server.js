@@ -16,31 +16,18 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.post('/cadAutor', async (req, res) => {
-    try {
-        const { name } = req.body;
-       
-
-        if (!name) {
-            return res.json({ success: false, message: 'Nome é obrigatórios.' });
+app.post('/cadAutor', (req, res) => {
+    const { nomeAutor } = req.body
+    const sql = `INSERT INTO autor (nomeAutor) VALUES ('${nomeAutor}')`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send('Autor cadastrado com sucesso!')
         }
-
-        const connection = await mysql.createConnection(conexao);
-
-        // Sanitização (importante para segurança)
-        const [rows, fields] = await connection.execute(
-            'INSERT INTO autores (name) VALUES (?, ?)',
-            [name]
-        );
-
-        await connection.end();
-
-        res.json({ success: true });
-    } catch (error) {
-        console.error('Erro ao cadastrar:', error);
-        res.status(500).json({ success: false, message: 'Erro interno no servidor.' });
-    }
+    })
 })
+        
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
