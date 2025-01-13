@@ -1,6 +1,7 @@
 import express from 'express'
 import conexao from './conexao.js'
 import bodyParser from 'body-parser'
+import conexao from './conexao.js'
 
 const app = express()
 
@@ -14,18 +15,30 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.post('/cadAutor', (req, res) => {
-   const { name } = req.body
-   const sql = 'INSERT INTO autores (name) VALUES (?)'
-   conexao.query(sql, [name], (err, result) => {
-       if (err) {
-           console.error('Erro ao cadastrar autor:', err)
-           res.status(500).send('Erro ao cadastrar autor')
-       } else {
-           console.log('Autor cadastrado com sucesso!')
-           res.send('Autor cadastrado com sucesso!')
-       }
-   })
+app.post('/cadAutor', async (req, res) => {
+    try {
+        const { nome } = req.body;
+       
+
+        if (!nome) {
+            return res.json({ success: false, message: 'Nome é obrigatórios.' });
+        }
+
+        const connection = await mysql.createConnection(conexao);
+
+        // Sanitização (importante para segurança)
+        const [rows, fields] = await connection.execute(
+            'INSERT INTO autores (nome) VALUES (?, ?)',
+            [nome]
+        );
+
+        await connection.end();
+
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Erro ao cadastrar:', error);
+        res.status(500).json({ success: false, message: 'Erro interno no servidor.' });
+    }
 })
 
 app.listen(PORT, () => {
