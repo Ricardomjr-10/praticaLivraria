@@ -24,6 +24,7 @@ formAutor.addEventListener('submit', (event) => {
     .then(response => response.json())
     .then(data => {
         document.getElementById('mensagens').innerHTML = data
+        console.log(data)
     })
 })
 

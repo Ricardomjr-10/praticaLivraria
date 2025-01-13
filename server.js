@@ -18,12 +18,12 @@ app.get('/', (req, res) => {
 
 app.post('/cadAutor', (req, res) => {
     const { nomeAutor } = req.body
-    const sql = `INSERT INTO autor (nomeAutor) VALUES ('${nomeAutor}')`
+    const sql = `INSERT INTO autores (name) VALUES ('${nomeAutor}')`
     conexao.query(sql, (err, result) => {
         if (err) {
             res.send(err)
         } else {
-            res.send('Autor cadastrado com sucesso!')
+            res.json('Autor cadastrado com sucesso!')
         }
     })
 })
