@@ -1,6 +1,7 @@
 import express from 'express'
 import conexao from './conexao.js'
 import bodyParser from 'body-parser'
+import mysql from 'mysql2/promise'
 
 
 const app = express()
