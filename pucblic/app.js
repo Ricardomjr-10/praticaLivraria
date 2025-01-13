@@ -1,5 +1,7 @@
 //import conexao  from './conexao.js'  
 
+import { json } from "express"
+
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
 const formFornecedor = document.getElementById('formFornecedor')
@@ -10,13 +12,14 @@ formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const formData = new FormData(formAutor);
+    const data = Object.fromEntries(formData)
 
     fetch('/cadAutor', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: formData
+        body: JSON.stringify(data)
     })
     .then(response => response.json())
     .then(data => {
