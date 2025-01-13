@@ -1,7 +1,7 @@
 import express from 'express'
 import conexao from './conexao.js'
 import bodyParser from 'body-parser'
-import mysql from 'mysql'
+
 
 
 const app = express()
@@ -18,10 +18,10 @@ app.get('/', (req, res) => {
 
 app.post('/cadAutor', async (req, res) => {
     try {
-        const { nome } = req.body;
+        const { name } = req.body;
        
 
-        if (!nome) {
+        if (!name) {
             return res.json({ success: false, message: 'Nome é obrigatórios.' });
         }
 
@@ -29,8 +29,8 @@ app.post('/cadAutor', async (req, res) => {
 
         // Sanitização (importante para segurança)
         const [rows, fields] = await connection.execute(
-            'INSERT INTO autores (nome) VALUES (?, ?)',
-            [nome]
+            'INSERT INTO autores (name) VALUES (?, ?)',
+            [name]
         );
 
         await connection.end();
