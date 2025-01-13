@@ -1,7 +1,7 @@
 import express from 'express'
 import conexao from './conexao.js'
 import bodyParser from 'body-parser'
-import conexao from './conexao.js'
+
 
 const app = express()
 
