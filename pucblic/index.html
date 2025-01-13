@@ -26,9 +26,9 @@
    <form id="formLivro">
        <h2>Cadastrar Livro</h2>
        <label for="tituloLivro">Título:</label>
-       <input type="text" id="tituloLivro" required>
+       <input type="text" id="tituloLivro" name="tituloLivro" required>
        <label for="autorLivro">Autor:</label>
-       <select id="autorLivro" required>
+       <select id="autorLivro" name="autorLivro" required>
            <option value="">Selecione o Autor</option>
        </select>
        <button type="submit">Cadastrar Livro</button>
@@ -37,16 +37,16 @@
    <form id="formFornecedor">
        <h2>Cadastrar Fornecedor</h2>
        <label for="nomeFornecedor">Nome:</label>
-       <input type="text" id="nomeFornecedor" required>
+       <input type="text" id="nomeFornecedor" name="nomeFornecedor" required>
        <button type="submit">Cadastrar Fornecedor</button>
    </form>
 
    <form id="formPeca">
        <h2>Cadastrar Peça</h2>
        <label for="nomePeca">Nome:</label>
-       <input type="text" id="nomePeca" required>
+       <input type="text" id="nomePeca" name="nomePeca" required>
        <label for="fornecedorPeca">Fornecedor:</label>
-       <select id="fornecedorPeca" required>
+       <select id="fornecedorPeca" name="fornecedorPeca" required>
            <option value="">Selecione o Fornecedor</option>
        </select>
        <button type="submit">Cadastrar Peça</button>
@@ -55,13 +55,13 @@
    <form id="formMontagem">
        <h2>Cadastrar Montagem</h2>
        <label for="nomeMontagem">Nome da Montagem:</label>
-       <input type="text" id="nomeMontagem" required>
+       <input type="text" id="nomeMontagem" name="nomeMontagem" required>
        <label for="livroMontagem">Livro:</label>
-       <select id="livroMontagem" required>
+       <select id="livroMontagem" name="livroMontagem" required>
            <option value="">Selecione o Livro</option>
        </select>
        <label for="pecasMontagem">Peças:</label>
-       <select id="pecasMontagem" multiple size="5" required>
+       <select id="pecasMontagem" name="pecasMontagem" multiple size="5" required>
            <option value="">Selecione as Peças</option>
        </select>
        <button type="submit">Cadastrar Montagem</button>
