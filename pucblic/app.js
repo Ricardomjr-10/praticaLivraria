@@ -6,6 +6,7 @@ const formFornecedor = document.getElementById('formFornecedor')
 const formPeca = document.getElementById('formPeca')
 const formMontagem = document.getElementById('formMontagem')
 const selectAutor = document.getElementById('autorLivro')
+const selectPeca = document.getElementById('fornecedorPeca')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -36,6 +37,17 @@ fetch('/allAutores')
             option.value = autor.id;
             option.text = autor.name;
             selectAutor.appendChild(option);
+        })
+    })
+
+fetch('/allFornecedores')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(fornecedor => {
+            const option = document.createElement('option');
+            option.value = fornecedor.id;
+            option.text = fornecedor.name;
+            selectPeca.appendChild(option);
         })
     })
 
