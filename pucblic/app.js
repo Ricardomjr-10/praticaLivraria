@@ -24,6 +24,7 @@ formAutor.addEventListener('submit', (event) => {
     .then(data => {
         document.getElementById('mensagens').innerHTML = data
         console.log(data)
+        formAutor.reset()
     })
 })
 
@@ -55,6 +56,7 @@ formLivro.addEventListener('submit', (event) => {
     .then(data => {
         document.getElementById('mensagens').innerHTML = data
         console.log(data)
+        formLivro.reset()
     })
 })
 
@@ -75,6 +77,7 @@ formFornecedor.addEventListener('submit', event => {
     .then(data => {
         document.getElementById('mensagens').innerHTML = data
         console.log(data)
+        formFornecedor.reset()
     })
 })
 
