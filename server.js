@@ -38,9 +38,17 @@ app.post('/cadAutor', (req, res) => {
     })
 })
 
+//adicionar coluna titulo na tabela livros
+conexao.query('ALTER TABLE livros ADD COLUMN titulo VARCHAR(255)', (err, result) => {
+    if (err) {
+        console.log(err)
+    }
+})
+
+
 app.post('/cadLivro', (req, res) => {
     const { tituloLivro, autorLivro } = req.body
-    const sql = `INSERT INTO livros (title, author_id) VALUES ('${tituloLivro}', ${autorLivro})`
+    const sql = `INSERT INTO livros (titulo, autor_id) VALUES ('${tituloLivro}', ${autorLivro})`
     conexao.query(sql, (err, result) => {
         if (err) {
             res.send(err)

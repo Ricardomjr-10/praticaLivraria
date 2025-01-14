@@ -27,28 +27,16 @@ formAutor.addEventListener('submit', (event) => {
     })
 })
 
-selectAutor.addEventListener('change', (event) => {
-    const selectedOption = event.target.value;
-
-    if (selectedOption) {
-        fetch(`/livros/autor/${selectedOption}`)
-            .then(response => response.json())
-            .then(data => {
-                const livroSelect = document.getElementById('autorLivro');
-                livroSelect.innerHTML = '';
-
-                data.forEach(livro => {
-                    const option = document.querySelector('selecionarAutor');
-                    option.value = livro.id;
-                    option.textContent = livro.titulo;
-                    livroSelect.appendChild(option);
-                });
-            });
-    } else {
-        const livroSelect = document.getElementById('livroLivro');
-        livroSelect.innerHTML = '';
-    }
-});
+fetch('/all')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(autor => {
+            const option = document.createElement('option');
+            option.value = autor.id;
+            option.text = autor.name;
+            selectAutor.appendChild(option);
+        })
+    })
 
 formLivro.addEventListener('submit', (event) => {
     event.preventDefault();
