@@ -1,12 +1,11 @@
 //import conexao  from './conexao.js'  
 
-
-
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
 const formFornecedor = document.getElementById('formFornecedor')
 const formPeca = document.getElementById('formPeca')
 const formMontagem = document.getElementById('formMontagem')
+const selectAutor = document.getElementById('autorLivro')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -27,6 +26,29 @@ formAutor.addEventListener('submit', (event) => {
         console.log(data)
     })
 })
+
+selectAutor.addEventListener('change', (event) => {
+    const selectedOption = event.target.value;
+
+    if (selectedOption) {
+        fetch(`/livros/autor/${selectedOption}`)
+            .then(response => response.json())
+            .then(data => {
+                const livroSelect = document.getElementById('livroLivro');
+                livroSelect.innerHTML = '';
+
+                data.forEach(livro => {
+                    const option = document.createElement('option');
+                    option.value = livro.id;
+                    option.textContent = livro.titulo;
+                    livroSelect.appendChild(option);
+                });
+            });
+    } else {
+        const livroSelect = document.getElementById('livroLivro');
+        livroSelect.innerHTML = '';
+    }
+});
 
 formLivro.addEventListener('submit', (event) => {
     event.preventDefault();

@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/all', (req, res) => {
-    conexao.query('SELECT * FROM livraria', (err, result) => {
+    conexao.query('SELECT * FROM autores', (err, result) => {
         if (err) {
             res.send(err)
         } else {
@@ -46,6 +46,18 @@ app.post('/cadLivro', (req, res) => {
             res.send(err)
         } else {
             res.json('Livro cadastrado com sucesso!')
+        }
+    })
+})
+
+app.get('/livros/autor/:id', (req, res) => {
+    const { id } = req.params
+    const sql = `SELECT * FROM livros WHERE author_id = ${id}`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
         }
     })
 })
