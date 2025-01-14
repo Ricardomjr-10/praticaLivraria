@@ -52,6 +52,18 @@ app.post('/cadLivro', (req, res) => {
     })
 })
 
+app.post('/cadForncedor', (req, res) => {
+    const { nomeFornecedor} = req.body
+    const sql = `INSERT INTO fornecedores (name) VALUES ('${nomeFornecedor})`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json('Fornecedor cadastrado com sucesso!')
+        }
+    })
+})
+
 app.get('/livros/autor/:id', (req, res) => {
     const { id } = req.params
     const sql = `SELECT * FROM livros WHERE autor_id = ${id}`
