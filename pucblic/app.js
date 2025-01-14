@@ -34,11 +34,11 @@ selectAutor.addEventListener('change', (event) => {
         fetch(`/livros/autor/${selectedOption}`)
             .then(response => response.json())
             .then(data => {
-                const livroSelect = document.getElementById('livroLivro');
+                const livroSelect = document.getElementById('autorLivro');
                 livroSelect.innerHTML = '';
 
                 data.forEach(livro => {
-                    const option = document.createElement('option');
+                    const option = document.querySelector('selecionarAutor');
                     option.value = livro.id;
                     option.textContent = livro.titulo;
                     livroSelect.appendChild(option);
