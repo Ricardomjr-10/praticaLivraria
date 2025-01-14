@@ -28,5 +28,25 @@ formAutor.addEventListener('submit', (event) => {
     })
 })
 
+formLivro.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(formLivro);
+    const data = Object.fromEntries(formData);
+
+    fetch('/cadLivro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('mensagens').innerHTML = data
+        console.log(data)
+    })
+})
+
 
 
