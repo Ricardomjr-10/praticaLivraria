@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get('/all', (req, res) => {
+app.get('/allAutores', (req, res) => {
     conexao.query('SELECT * FROM autores', (err, result) => {
         if (err) {
             res.send(err)

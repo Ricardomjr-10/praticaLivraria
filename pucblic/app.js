@@ -27,7 +27,7 @@ formAutor.addEventListener('submit', (event) => {
     })
 })
 
-fetch('/all')
+fetch('/allAutores')
     .then(response => response.json())
     .then(data => {
         data.forEach(autor => {
