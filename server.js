@@ -83,7 +83,7 @@ app.post('/cadLivro', (req, res) => {
 })
 
 app.post('/cadFornecedor', (req, res) => {
-    const { nomeFornecedor} = req.body
+    const { nomeFornecedor } = req.body
     const sql = `INSERT INTO fornecedores (name) VALUES ('${nomeFornecedor}')`
     conexao.query(sql, (err, result) => {
         if (err) {
@@ -95,7 +95,7 @@ app.post('/cadFornecedor', (req, res) => {
 })
 
 app.post('/cadPeca', (req, res) => {
-    const { nomePeca, fornecedorPeca} = req.body
+    const { nomePeca, fornecedorPeca } = req.body
     const sql = `INSERT INTO pecas (name, fornecedor_id) VALUES ('${nomePeca}', ${fornecedorPeca})`
     conexao.query(sql, (err, result) => {
         if (err) {
@@ -106,7 +106,19 @@ app.post('/cadPeca', (req, res) => {
     })
 })
 
-        
+app.post('/cadMontagem', (req, res) => {
+    const { nomeMontagem, livroMontagem, pecasMontagem } = req.body
+    const sql = `INSERT INTO montagem (name, livro_id, peca_id) VALUES ('${nomeMontagem}', ${livroMontagem}, ${pecasMontagem})`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json('Montagem cadastrada com sucesso!')
+        }
+    })
+})
+
+
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
