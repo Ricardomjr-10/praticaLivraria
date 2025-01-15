@@ -23,12 +23,12 @@ formAutor.addEventListener('submit', (event) => {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('mensagens').innerHTML = data
-        console.log(data)
-        formAutor.reset()
-    })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('mensagens').innerHTML = data
+            console.log(data)
+            formAutor.reset()
+        })
 })
 
 fetch('/allAutores')
@@ -59,10 +59,10 @@ fetch('/allLivros')
         data.forEach(livro => {
             const option = document.createElement('option');
             option.value = livro.id;
-            option.text = livro.name;
+            option.text = livro.titulo;
             selectLivroMontagem.appendChild(option);
         })
-    })    
+    })
 
 fetch('/allPecas')
     .then(response => response.json())
@@ -73,7 +73,7 @@ fetch('/allPecas')
             option.text = peca.name;
             selectPecaMontagem.appendChild(option);
         })
-    }) 
+    })
 
 formLivro.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -88,12 +88,12 @@ formLivro.addEventListener('submit', (event) => {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('mensagens').innerHTML = data
-        console.log(data)
-        formLivro.reset()
-    })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('mensagens').innerHTML = data
+            console.log(data)
+            formLivro.reset()
+        })
 })
 
 formFornecedor.addEventListener('submit', event => {
@@ -109,12 +109,12 @@ formFornecedor.addEventListener('submit', event => {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('mensagens').innerHTML = data
-        console.log(data)
-        formFornecedor.reset()
-    })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('mensagens').innerHTML = data
+            console.log(data)
+            formFornecedor.reset()
+        })
 })
 
 formPeca.addEventListener('submit', event => {
@@ -130,10 +130,31 @@ formPeca.addEventListener('submit', event => {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('mensagens').innerHTML = data
-        console.log(data)
-        formPeca.reset()
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('mensagens').innerHTML = data
+            console.log(data)
+            formPeca.reset()
+        })
+})
+
+formMontagem.addEventListener('submit', event => {
+    event.preventDefault()
+
+    const formData = new FormData(formMontagem)
+    const data = Object.fromEntries(formData)
+
+    fetch('/cadMontagem', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('mensagens').innerHTML = data
+            console.log(data)
+            formMontagem.reset()
+        })
 })
