@@ -93,3 +93,23 @@ formFornecedor.addEventListener('submit', event => {
     })
 })
 
+formPeca.addEventListener('submit', event => {
+    event.preventDefault()
+
+    const formData = new FormData(formPeca)
+    const data = Object.fromEntries(formData)
+
+    fetch('/cadPeca', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('mensagens').innerHTML = data
+        console.log(data)
+        formPeca.reset()
+    })
+})

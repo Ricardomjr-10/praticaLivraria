@@ -26,6 +26,16 @@ app.get('/allAutores', (req, res) => {
     })
 })
 
+app.get('/allFornecedores', (req, res) => {
+    conexao.query('SELECT * FROM fornecedores', (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 app.post('/cadAutor', (req, res) => {
     const { nomeAutor } = req.body
     const sql = `INSERT INTO autores (name) VALUES ('${nomeAutor}')`
@@ -64,17 +74,29 @@ app.post('/cadFornecedor', (req, res) => {
     })
 })
 
-app.get('/livros/autor/:id', (req, res) => {
-    const { id } = req.params
-    const sql = `SELECT * FROM livros WHERE autor_id = ${id}`
+app.post('/cadPeca', (req, res) => {
+    const { nomePeca, fornecedorPeca} = req.body
+    const sql = `INSERT INTO pecas (name, fornecedor_id) VALUES ('${nomePeca}', ${fornecedorPeca})`
     conexao.query(sql, (err, result) => {
         if (err) {
             res.send(err)
         } else {
-            res.send(result)
+            res.json('Peca cadastrada com sucesso!')
         }
     })
 })
+
+// app.get('/livros/autor/:id', (req, res) => {
+//     const { id } = req.params
+//     const sql = `SELECT * FROM livros WHERE autor_id = ${id}`
+//     conexao.query(sql, (err, result) => {
+//         if (err) {
+//             res.send(err)
+//         } else {
+//             res.send(result)
+//         }
+//     })
+// })
         
 
 app.listen(PORT, () => {
