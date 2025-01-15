@@ -83,8 +83,8 @@ app.post('/cadLivro', (req, res) => {
 })
 
 app.post('/cadFornecedor', (req, res) => {
-    const { nomeFornecedor } = req.body
-    const sql = `INSERT INTO fornecedores (name) VALUES ('${nomeFornecedor}')`
+    const { nomeFornecedor, cnpjFornecedor } = req.body
+    const sql = `INSERT INTO fornecedores (name, cnpj) VALUES ('${nomeFornecedor}', '${cnpjFornecedor}')`
     conexao.query(sql, (err, result) => {
         if (err) {
             res.send(err)

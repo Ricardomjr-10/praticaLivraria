@@ -11,3 +11,6 @@ const conexao = mysql.createConnection({
 conexao.connect()
 
 export default conexao
+
+//criar coluna cnpj em fornecedores
+//conexao.query('ALTER TABLE fornecedores ADD COLUMN cnpj VARCHAR(14)')
