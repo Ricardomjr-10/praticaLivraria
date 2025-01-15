@@ -36,6 +36,26 @@ app.get('/allFornecedores', (req, res) => {
     })
 })
 
+app.get('/allLivros', (req, res) => {
+    conexao.query('SELECT * FROM livros', (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
+app.get('/allPecas', (req, res) => {
+    conexao.query('SELECT * FROM pecas', (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 app.post('/cadAutor', (req, res) => {
     const { nomeAutor } = req.body
     const sql = `INSERT INTO autores (name) VALUES ('${nomeAutor}')`
@@ -86,17 +106,6 @@ app.post('/cadPeca', (req, res) => {
     })
 })
 
-// app.get('/livros/autor/:id', (req, res) => {
-//     const { id } = req.params
-//     const sql = `SELECT * FROM livros WHERE autor_id = ${id}`
-//     conexao.query(sql, (err, result) => {
-//         if (err) {
-//             res.send(err)
-//         } else {
-//             res.send(result)
-//         }
-//     })
-// })
         
 
 app.listen(PORT, () => {

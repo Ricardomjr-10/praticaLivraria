@@ -7,6 +7,8 @@ const formPeca = document.getElementById('formPeca')
 const formMontagem = document.getElementById('formMontagem')
 const selectAutor = document.getElementById('autorLivro')
 const selectPeca = document.getElementById('fornecedorPeca')
+const selectLivroMontagem = document.getElementById('livroMontagem')
+const selectPecaMontagem = document.getElementById('pecasMontagem')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -50,6 +52,28 @@ fetch('/allFornecedores')
             selectPeca.appendChild(option);
         })
     })
+
+fetch('/allLivros')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(livro => {
+            const option = document.createElement('option');
+            option.value = livro.id;
+            option.text = livro.name;
+            selectLivroMontagem.appendChild(option);
+        })
+    })    
+
+fetch('/allPecas')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(peca => {
+            const option = document.createElement('option');
+            option.value = peca.id;
+            option.text = peca.name;
+            selectPecaMontagem.appendChild(option);
+        })
+    }) 
 
 formLivro.addEventListener('submit', (event) => {
     event.preventDefault();
