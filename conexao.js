@@ -22,3 +22,5 @@ export default conexao
 
 //adicionar diigito verificador em conta
  //conexao.query('ALTER TABLE fornecedores ADD COLUMN digito_verificador INT NOT NULL')
+
+ //conexao.query('ALTER TABLE autores ADD COLUMN cpf VARCHAR(11)')

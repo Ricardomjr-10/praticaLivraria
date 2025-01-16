@@ -57,8 +57,8 @@ app.get('/allPecas', (req, res) => {
 })
 
 app.post('/cadAutor', (req, res) => {
-    const { nomeAutor } = req.body
-    const sql = `INSERT INTO autores (name) VALUES ('${nomeAutor}')`
+    const { nomeAutor, cpfAutor } = req.body
+    const sql = `INSERT INTO autores (name, cpf) VALUES ('${nomeAutor}', '${cpfAutor}')`
     conexao.query(sql, (err, result) => {
         if (err) {
             res.send(err)
