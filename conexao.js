@@ -19,3 +19,6 @@ export default conexao
 // // conexao.query('DROP TABLE contas')
 
 // conexao.query('ALTER TABLE fornecedores ADD COLUMN contas INT NOT NULL')
+
+//adicionar diigito verificador em conta
+ //conexao.query('ALTER TABLE fornecedores ADD COLUMN digito_verificador INT NOT NULL')
