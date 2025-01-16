@@ -1,7 +1,7 @@
 import express from 'express'
 import conexao from './conexao.js'
 import bodyParser from 'body-parser'
-
+import {cpf, cnpj} from 'cpf-cnpj-validator'
 
 
 const app = express()
@@ -118,6 +118,20 @@ app.post('/cadMontagem', (req, res) => {
     })
 })
 
+
+//rota para validar cpf
+app.get('/validar-cpf/:cpf', (req, res) => {
+    const { cpf } = req.params
+    const isValid = cpf.isValid(cpf)
+    res.json({ isValid })
+})
+
+//rota para validar cnpj
+app.get('/validar-cnpj/:cnpj', (req, res) => {
+    const { cnpj } = req.params
+    const isValid = cnpj.isValid(cnpj)
+    res.json({ isValid })
+})
 
 
 app.listen(PORT, () => {
