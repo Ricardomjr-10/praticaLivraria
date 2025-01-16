@@ -16,6 +16,6 @@ export default conexao
 //conexao.query('ALTER TABLE fornecedores ADD COLUMN cnpj VARCHAR(14)')
 
 //apagar tabela conta se existir
-// conexao.query('DROP TABLE contas')
+// // conexao.query('DROP TABLE contas')
 
-conexao.query('ALTER TABLE fornecedores ADD COLUMN contas INT NOT NULL')
+// conexao.query('ALTER TABLE fornecedores ADD COLUMN contas INT NOT NULL')
