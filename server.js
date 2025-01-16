@@ -71,8 +71,8 @@ app.post('/cadAutor', (req, res) => {
 
 
 app.post('/cadLivro', (req, res) => {
-    const { tituloLivro, autorLivro } = req.body
-    const sql = `INSERT INTO livros (titulo, autor_id) VALUES ('${tituloLivro}', ${autorLivro})`
+    const { tituloLivro, autorLivro, isbnLivro} = req.body
+    const sql = `INSERT INTO livros (titulo, autor_id, isbn) VALUES ('${tituloLivro}', ${autorLivro}, '${isbnLivro}')`
     conexao.query(sql, (err, result) => {
         if (err) {
             res.send(err)
