@@ -158,3 +158,19 @@ formMontagem.addEventListener('submit', event => {
             formMontagem.reset()
         })
 })
+
+//funcao para validar digito verificador em conta
+function calcularDigitoVerificador(conta) {
+    let soma = 0;
+    for (let i = 0; i < conta.length; i++) {
+        soma += parseInt(conta[i]);
+    }
+    let digito = soma % 11;
+    return digito;
+}
+
+const contaInput = document.getElementById('contaFornecedor');
+contaInput.addEventListener('input', () => {
+    const digitoVerificador = calcularDigitoVerificador(contaInput.value);
+    document.getElementById('digitoVerificadorConta').value = digitoVerificador;
+});
