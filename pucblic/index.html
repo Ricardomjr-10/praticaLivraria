@@ -1,81 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Livraria</title>
 </head>
+
 <body>
-   <header>
-    <h1>Livraria Rocha</h1>
-    <p>A melhor livraria do mundo</p>
-   </header>
+    <header>
+        <h1>Livraria Rocha</h1>
+        <p>A melhor livraria do mundo</p>
+    </header>
 
-   <h1>Cadastros</h1>
+    <h1>Cadastros</h1>
 
-   <div id="mensagens"></div>
+    <div id="mensagens"></div>
 
-   <form id="formAutor">
-       <h2>Cadastrar Autor</h2>
-       <label for="nomeAutor">Nome:</label>
-       <input type="text" id="nomeAutor" name="nomeAutor" required>
-       <label for="cpfAutor"></label>
-       <input type="text" id="cpfAutor" name="cpfAutor" required>
-       <button type="submit">Cadastrar Autor</button>
-   </form>
+    <form id="formAutor">
+        <h2>Cadastrar Autor</h2>
+        <label for="nomeAutor">Nome:</label>
+        <input type="text" id="nomeAutor" name="nomeAutor" required>
+        <label for="cpfAutor"></label>
+        <input type="text" id="cpfAutor" name="cpfAutor" required>
+        <button type="submit">Cadastrar Autor</button>
+    </form>
 
-   <form id="formLivro">
-       <h2>Cadastrar Livro</h2>
-       <label for="tituloLivro">Título:</label>
-       <input type="text" id="tituloLivro" name="tituloLivro" required>
-       <label for="autorLivro">Autor:</label>
-       <select id="autorLivro" name="autorLivro" required>
-           <option id="selecionarAutor" name="selecionarAutor" value="">Selecione o Autor</option>
-       </select>
-       <label for='isbnLivro'>ISBN:</label>
-       <input type="text" id="isbnLivro" name="isbnLivro" required>
-       <button type="submit">Cadastrar Livro</button>
-   </form>
+    <form id="formLivro">
+        <h2>Cadastrar Livro</h2>
+        <label for="tituloLivro">Título:</label>
+        <input type="text" id="tituloLivro" name="tituloLivro" required>
+        <label for="autorLivro">Autor:</label>
+        <select id="autorLivro" name="autorLivro" required>
+            <option id="selecionarAutor" name="selecionarAutor" value="">Selecione o Autor</option>
+        </select>
+        <label for='isbnLivro'>ISBN:</label>
+        <input type="text" id="isbnLivro" name="isbnLivro" required>
+        <button type="submit">Cadastrar Livro</button>
+    </form>
 
-   <form id="formFornecedor">
-       <h2>Cadastrar Fornecedor</h2>
-       <label for="nomeFornecedor">Nome:</label>
-       <input type="text" id="nomeFornecedor" name="nomeFornecedor" required>
-       <label for="cnpjFornecedor">CNPJ:</label>
-       <input type="text" id="cnpjFornecedor" name="cnpjFornecedor" required>
-       <label for="contaFornecedor">Conta:</label>
-       <input type="text" id="contaFornecedor" name="contaFornecedor" required>
-       <label for="digitoVerificadorConta">Dígito Verificador:</label>
-       <input type="text" id="digitoVerificadorConta" name="digitoVerificadorConta" required>
-       <button type="submit">Cadastrar Fornecedor</button>
-   </form>
+    <form id="formFornecedor">
+        <h2>Cadastrar Fornecedor</h2>
+        <label for="nomeFornecedor">Nome:</label>
+        <input type="text" id="nomeFornecedor" name="nomeFornecedor" required>
+        <label for="cnpjFornecedor">CNPJ:</label>
+        <input type="text" id="cnpjFornecedor" name="cnpjFornecedor" required>
+        <label for="contaFornecedor">Conta:</label>
+        <input type="text" id="contaFornecedor" name="contaFornecedor" required>
+        <label for="digitoVerificadorConta">Dígito Verificador:</label>
+        <input type="text" id="digitoVerificadorConta" name="digitoVerificadorConta" required>
+        <button type="submit">Cadastrar Fornecedor</button>
+    </form>
 
-   <form id="formPeca">
-       <h2>Cadastrar Peça</h2>
-       <label for="nomePeca">Nome:</label>
-       <input type="text" id="nomePeca" name="nomePeca" required>
-       <label for="fornecedorPeca">Fornecedor:</label>
-       <select id="fornecedorPeca" name="fornecedorPeca" required>
-           <option value="">Selecione o Fornecedor</option>
-       </select>
-       <button type="submit">Cadastrar Peça</button>
-   </form>
+    <form id="formPeca">
+        <h2>Cadastrar Peça</h2>
+        <label for="nomePeca">Nome:</label>
+        <input type="text" id="nomePeca" name="nomePeca" required>
+        <label for="fornecedorPeca">Fornecedor:</label>
+        <select id="fornecedorPeca" name="fornecedorPeca" required>
+            <option value="">Selecione o Fornecedor</option>
+        </select>
+        <button type="submit">Cadastrar Peça</button>
+    </form>
 
-   <form id="formMontagem">
-       <h2>Cadastrar Montagem</h2>
-       <label for="nomeMontagem">Nome da Montagem:</label>
-       <input type="text" id="nomeMontagem" name="nomeMontagem" required>
-       <label for="livroMontagem">Livro:</label>
-       <select id="livroMontagem" name="livroMontagem" required>
-           <option value="">Selecione o Livro</option>
-       </select>
-       <label for="pecasMontagem">Peças:</label>
-       <select id="pecasMontagem" name="pecasMontagem"  required>
-           <option value="">Selecione as Peças</option>
-       </select>
-       <button type="submit">Cadastrar Montagem</button>
-   </form>
-   <script type="module" src="app.js"></script>
+    <form id="formMontagem">
+        <h2>Cadastrar Montagem</h2>
+        <label for="nomeMontagem">Nome da Montagem:</label>
+        <input type="text" id="nomeMontagem" name="nomeMontagem" required>
+        <label for="livroMontagem">Livro:</label>
+        <select id="livroMontagem" name="livroMontagem" required>
+            <option value="">Selecione o Livro</option>
+        </select>
+        <label for="pecasMontagem">Peças:</label>
+        <select id="pecasMontagem" name="pecasMontagem" required>
+            <option value="">Selecione as Peças</option>
+        </select>
+        <button type="submit">Cadastrar Montagem</button>
+    </form>
+    <script type="module" src="app.js"></script>
 </body>
+
 </html>

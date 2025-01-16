@@ -71,7 +71,7 @@ app.post('/cadAutor', (req, res) => {
 
 
 app.post('/cadLivro', (req, res) => {
-    const { tituloLivro, autorLivro, isbnLivro} = req.body
+    const { tituloLivro, autorLivro, isbnLivro } = req.body
     const sql = `INSERT INTO livros (titulo, autor_id, isbn) VALUES ('${tituloLivro}', ${autorLivro}, '${isbnLivro}')`
     conexao.query(sql, (err, result) => {
         if (err) {
@@ -83,7 +83,7 @@ app.post('/cadLivro', (req, res) => {
 })
 
 app.post('/cadFornecedor', (req, res) => {
-    const { nomeFornecedor, cnpjFornecedor , contaFornecedor, digitoVerificadorConta} = req.body
+    const { nomeFornecedor, cnpjFornecedor, contaFornecedor, digitoVerificadorConta } = req.body
     const sql = `INSERT INTO fornecedores (name, cnpj, conta, digito_verificador) VALUES ('${nomeFornecedor}', '${cnpjFornecedor}', ${contaFornecedor}, ${digitoVerificadorConta})`
     conexao.query(sql, (err, result) => {
         if (err) {
