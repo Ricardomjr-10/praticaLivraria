@@ -11,6 +11,7 @@ const selectLivroMontagem = document.getElementById('livroMontagem')
 const selectPecaMontagem = document.getElementById('pecasMontagem')
 const cpfInput = document.getElementById('cpfAutor')
 const cnpjInput = document.getElementById('cnpjFornecedor')
+const isbnInput = document.getElementById('isbnLivro')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -190,3 +191,24 @@ cpfInput.addEventListener('input', () => {
     validarCPF(cpfInput.value)
 })
 
+//validar cnpj em fornecedor
+function validarCNPJ(cnpj) {
+    const regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+    const isValid = regex.test(cnpj);
+    document.getElementById('mensagens').innerHTML = isValid ? 'CNPJ válido' : 'CNPJ inválido';
+}
+
+cnpjInput.addEventListener('input', () => {
+    validarCNPJ(cnpjInput.value)
+})
+
+//validar isbn em livro
+function validarISBN(isbn) {
+    const regex = /^\d{3}-\d{3}-\d{3}-\d{2}-\d{1}$/;
+    const isValid = regex.test(isbn);
+    document.getElementById('mensagens').innerHTML = isValid ? 'ISBN válido' : 'ISBN inválido';
+}
+
+isbnInput.addEventListener('input', () => {
+    validarISBN(isbnInput.value)
+})
