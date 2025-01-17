@@ -29,7 +29,6 @@ formAutor.addEventListener('submit', (event) => {
         .then(data => {
             document.getElementById('mensagens').innerHTML = data
             console.log(data)
-            validarCPF(cpfInput.value)
             formAutor.reset()
         })
 })
@@ -80,7 +79,7 @@ fetch('/allPecas')
 
 formLivro.addEventListener('submit', (event) => {
     event.preventDefault();
-
+    validarCPF(cpfInput.value)
     const formData = new FormData(formLivro);
     const data = Object.fromEntries(formData);
 
@@ -180,6 +179,14 @@ contaInput.addEventListener('input', () => {
 });
 
 
-
+//validar cpf em autor
+function validarCPF(cpf) {
+    const isValid = cpf.isValid(cpf)
+    if (isValid) {
+        document.getElementById('mensagens').innerHTML = 'CPF válido'
+    } else {
+        document.getElementById('mensagens').innerHTML = 'CPF inválido'
+    }
+}
 
 
