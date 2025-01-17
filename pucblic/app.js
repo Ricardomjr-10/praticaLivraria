@@ -1,5 +1,6 @@
 //import conexao  from './conexao.js'  
 
+
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
 const formFornecedor = document.getElementById('formFornecedor')
@@ -9,6 +10,8 @@ const selectAutor = document.getElementById('autorLivro')
 const selectPeca = document.getElementById('fornecedorPeca')
 const selectLivroMontagem = document.getElementById('livroMontagem')
 const selectPecaMontagem = document.getElementById('pecasMontagem')
+const cpfInput = document.getElementById('cpfAutor')
+const cnpjInput = document.getElementById('cnpjFornecedor')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -27,6 +30,7 @@ formAutor.addEventListener('submit', (event) => {
         .then(data => {
             document.getElementById('mensagens').innerHTML = data
             console.log(data)
+            validarCPF(cpfInput.value)
             formAutor.reset()
         })
 })
@@ -113,6 +117,7 @@ formFornecedor.addEventListener('submit', event => {
         .then(data => {
             document.getElementById('mensagens').innerHTML = data
             console.log(data)
+            validarCNPJ(cnpjInput.value)
             formFornecedor.reset()
         })
 })
@@ -174,3 +179,6 @@ contaInput.addEventListener('input', () => {
     const digitoVerificador = calcularDigitoVerificador(contaInput.value);
     document.getElementById('digitoVerificadorConta').value = digitoVerificador;
 });
+
+
+
