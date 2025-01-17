@@ -79,7 +79,7 @@ fetch('/allPecas')
 
 formLivro.addEventListener('submit', (event) => {
     event.preventDefault();
-    validarCPF(cpfInput.value)
+    
     const formData = new FormData(formLivro);
     const data = Object.fromEntries(formData);
 
@@ -181,12 +181,12 @@ contaInput.addEventListener('input', () => {
 
 //validar cpf em autor
 function validarCPF(cpf) {
-    const isValid = cpf.isValid(cpf)
-    if (isValid) {
-        document.getElementById('mensagens').innerHTML = 'CPF válido'
-    } else {
-        document.getElementById('mensagens').innerHTML = 'CPF inválido'
-    }
+    const regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    const isValid = regex.test(cpf);
+    document.getElementById('mensagens').innerHTML = isValid ? 'CPF válido' : 'CPF inválido';
 }
 
+cpfInput.addEventListener('input', () => {
+    validarCPF(cpfInput.value)
+})
 

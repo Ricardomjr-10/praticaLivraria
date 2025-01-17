@@ -1,8 +1,6 @@
 import express from 'express'
 import conexao from './conexao.js'
 import bodyParser from 'body-parser'
-import {cpf, cnpj} from 'cpf-cnpj-validator'
-
 
 const app = express()
 
