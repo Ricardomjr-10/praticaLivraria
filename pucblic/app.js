@@ -185,6 +185,8 @@ function validarCPF(cpf) {
     const regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
     const isValid = regex.test(cpf);
     document.getElementById('mensagens').innerHTML = isValid ? 'CPF válido' : 'CPF inválido';
+    //se invalido, cor da letra vermelha
+    cpfInput.style.color = isValid ? 'green' : 'red';
 }
 
 cpfInput.addEventListener('input', () => {
@@ -196,6 +198,8 @@ function validarCNPJ(cnpj) {
     const regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
     const isValid = regex.test(cnpj);
     document.getElementById('mensagens').innerHTML = isValid ? 'CNPJ válido' : 'CNPJ inválido';
+    //se invalido, cor da letra vermelha
+    cnpjInput.style.color = isValid ? 'green' : 'red';
 }
 
 cnpjInput.addEventListener('input', () => {
@@ -207,6 +211,8 @@ function validarISBN(isbn) {
     const regex = /^\d{3}-\d{3}-\d{3}-\d{2}-\d{1}$/;
     const isValid = regex.test(isbn);
     document.getElementById('mensagens').innerHTML = isValid ? 'ISBN válido' : 'ISBN inválido';
+    //se invalido, cor da letra vermelha
+    isbnInput.style.color = isValid ? 'green' : 'red';
 }
 
 isbnInput.addEventListener('input', () => {
