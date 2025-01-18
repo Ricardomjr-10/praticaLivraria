@@ -12,6 +12,11 @@ const selectPecaMontagem = document.getElementById('pecasMontagem')
 const cpfInput = document.getElementById('cpfAutor')
 const cnpjInput = document.getElementById('cnpjFornecedor')
 const isbnInput = document.getElementById('isbnLivro')
+const btnCadastro = document.getElementById('btnCadastro')
+const btnFiltros = document.getElementById('btnFiltros')
+const btnRelatorios = document.getElementById('btnRelatorios')
+const divCadastro = document.querySelector('.cadastro')
+const divFiltros = document.querySelector('.filtros')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -217,4 +222,16 @@ function validarISBN(isbn) {
 
 isbnInput.addEventListener('input', () => {
     validarISBN(isbnInput.value)
+})
+
+btnCadastro.addEventListener('click', () => {
+    divCadastro.style.display = 'flex'
+    divFiltros.style.display = 'none'
+    divRelatorios.style.display = 'none'
+})
+
+btnFiltros.addEventListener('click', () => {
+    divCadastro.style.display = 'none'
+    divFiltros.style.display = 'flex'
+    divRelatorios.style.display = 'none'
 })
