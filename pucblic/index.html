@@ -66,6 +66,8 @@
         <select id="fornecedorPeca" name="fornecedorPeca" required>
             <option value="">Selecione o Fornecedor</option>
         </select>
+        <label for="precoPeca">Valor:</label>
+        <input type="text" id="precoPeca" name="precoPeca" required>
         <button type="submit">Cadastrar Peça</button>
     </form>
 
@@ -94,6 +96,26 @@
      <input type="text" id="buscarFornecedor" placeholder="Buscar Fornecedor">
      <label for="numeroConta">Numero da Conta</label>
      <input type="text" id="numeroConta" placeholder="Numero da Conta">
+     <button>Buscar</button>
+     </form>
+
+     <!-- buscar livro por titulo -->
+     <form id="livroPorTitulo">
+        <h2>Filtrar Livros</h2>
+     <label for="buscarLivro">Título</label>
+     <input type="text" id="buscarLivro" placeholder="Buscar Livro">
+     <label for="autorLivro">Autor</label>
+     <input type="text" id="autorLivro" placeholder="Buscar Autor">
+     <button>Buscar</button>
+     </form>
+
+     <!-- buscar montagem por nome em peça-->
+     <form id="montagemPorNome">
+        <h2>Filtrar Montagem</h2>
+     <label for="buscarMontagem">Nome</label>
+     <input type="text" id="buscarMontagem" placeholder="Buscar Montagem">
+     <label for="pecasMontagem">Peças</label>
+     <input type="text" id="pecasMontagem" placeholder="Buscar Peças">
      <button>Buscar</button>
      </form>
 
