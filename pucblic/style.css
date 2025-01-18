@@ -34,3 +34,24 @@ button {
 #mensagens {
     margin-top: 20px;
 }
+
+.links {
+    display: flex;
+    justify-content:flex-start;
+    margin-top: 20px;
+    gap: 40px;
+}
+
+.btnList {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btnList:hover {
+    background-color: #45a049;
+}
