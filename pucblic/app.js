@@ -17,6 +17,9 @@ const btnFiltros = document.getElementById('btnFiltros')
 const btnRelatorios = document.getElementById('btnRelatorios')
 const divCadastro = document.querySelector('.cadastro')
 const divFiltros = document.querySelector('.filtros')
+const formFiltroFornecedor = document.getElementById('fornecedorPorNome')
+const formFiltroLivro = document.getElementById('livroPorTitulo')
+const formFiltroMontagem = document.getElementById('montagemPorNome')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -235,3 +238,4 @@ btnFiltros.addEventListener('click', () => {
     divFiltros.style.display = 'flex'
     divRelatorios.style.display = 'none'
 })
+
