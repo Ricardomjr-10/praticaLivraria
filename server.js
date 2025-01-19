@@ -117,6 +117,18 @@ app.post('/cadMontagem', (req, res) => {
 })
 
 
+app.get('filtroFornecedor?nome=:nome', (req, res) => {
+    const { nome } = req.params
+    const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${nome}%'`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json(result)
+        }
+    })
+})
+
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params

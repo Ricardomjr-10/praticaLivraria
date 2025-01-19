@@ -17,6 +17,7 @@ const btnFiltros = document.getElementById('btnFiltros')
 const btnRelatorios = document.getElementById('btnRelatorios')
 const divCadastro = document.querySelector('.cadastro')
 const divFiltros = document.querySelector('.filtros')
+const divRelatorios = document.querySelector('.relatorio')
 const formFiltroFornecedor = document.getElementById('fornecedorPorNome')
 const formFiltroLivro = document.getElementById('livroPorTitulo')
 const formFiltroMontagem = document.getElementById('montagemPorNome')
@@ -242,21 +243,28 @@ btnFiltros.addEventListener('click', () => {
 formFiltroFornecedor.addEventListener('submit', event => {
     event.preventDefault()
 
-    const formData = new FormData(formFiltroFornecedor)
-    const data = Object.fromEntries(formData)
-
-    fetch('/filtroFornecedor', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
+    //buscar fornecedor por nome no banco de dados pelo valor do input
+    const nomeFiltro = document.getElementById('buscarFornecedor').value
+    fetch(`/filtroFornecedor?nome=${nomeFiltro}`)
         .then(response => response.json())
         .then(data => {
-            document.getElementById('forneResult').innerHTML = data
-            console.log(data)
-            formFiltroFornecedor.reset()
+            const fornecedorResult = document.querySelector('.forneResult')
+            fornecedorResult.innerHTML = ''
+            data.forEach(fornecedor => {
+                const fornecedorDiv = document.createElement('div')
+                fornecedorDiv.innerHTML = `
+                <p>Nome: ${fornecedor.nome}</p>
+                <p>Contato: ${fornecedor.contato}</p>
+                <p>Endereço: ${fornecedor.endereco}</p>
+                <p>Telefone: ${fornecedor.telefone}</p>
+                <p>Email: ${fornecedor.email}</p>
+                <p>Contas: ${fornecedor.contas}</p>
+                <p>Dígito Verificador: ${fornecedor.digito_verificador}</p>
+                <p>CNPJ: ${fornecedor.cnpj}</p>
+                <hr>
+                `
+                fornecedorResult.appendChild(fornecedorDiv)
+            })
         })
 })
         
