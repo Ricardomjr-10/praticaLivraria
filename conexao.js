@@ -1,6 +1,6 @@
-import mysql from 'mysql2'
+import mysql from 'mysql2/promise'
 
-const conexao = mysql.createConnection({
+const conexao = mysql.createPool({
     host: 'localhost',
     port: '3306',
     user: 'dba',
