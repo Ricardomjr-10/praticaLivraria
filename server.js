@@ -132,10 +132,11 @@ app.post('/cadMontagem', (req, res) => {
 
 app.get('/filtroFornecedor', (req, res) => { // Rota corrigida: sem parâmetro na URL
     const nomeFiltro = req.query.nome; // Obtém o valor da query string
+    const nomeConta = req.query.conta;
     if (!nomeFiltro) {
         return res.json([]); // Retorna array vazio se nenhum filtro for fornecido
     }
-    const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${nomeFiltro}%'`; // Nome da coluna corrigido para 'nome'
+    const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${nomeFiltro}%' OR conta LIKE '%${nomeConta}%'`; // Nome da coluna corrigido para 'nome'
     conexao.query(sql, (err, result) => { // Remove o segundo argumento desnecessário
         if (err) {
             console.error("Erro na consulta:", err); // Log do erro no console para debug

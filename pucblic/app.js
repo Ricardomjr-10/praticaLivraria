@@ -241,28 +241,69 @@ btnFiltros.addEventListener('click', () => {
 })
 
 formFiltroFornecedor.addEventListener('submit', event => {
-    event.preventDefault()
+    event.preventDefault();
 
-    //buscar fornecedor por nome no banco de dados pelo valor do input
-    const nomeFiltro = document.getElementById('buscarFornecedor').value
+    const nomeFiltro = document.getElementById('buscarFornecedor').value;
+    const nomeConta = document.getElementById('numeroConta').value;
 
-    fetch(`/filtroFornecedor?nome=${nomeFiltro}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            const fornecedorResult = document.querySelector('.forneResult')
-            fornecedorResult.innerHTML = ''
-            data.forEach(fornecedor => {
-                const fornecedorDiv = document.createElement('div')
-                fornecedorDiv.innerHTML = `
-                <p>Nome: ${fornecedor.name}</p>
-                <p>Contas: ${fornecedor.contas}</p>
-                <p>Dígito Verificador: ${fornecedor.digito_verificador}</p>
-                <p>CNPJ: ${fornecedor.cnpj}</p>
-                <hr>
-                `
-                fornecedorResult.appendChild(fornecedorDiv)
-            })
+    fetch(`/filtroFornecedor?nome=${nomeFiltro} or conta=${nomeConta}`) // URL correta
+        .then(response => {
+            if (!response.ok) { // Verifica se a resposta foi bem-sucedida (status 2xx)
+                throw new Error(`Erro na requisição: ${response.status}`);
+            }
+            return response.json();
         })
-})
+        .then(data => {
+            const fornecedorResult = document.querySelector('.forneResult');
+            fornecedorResult.innerHTML = '';
+
+            if (data.length === 0) { // Mensagem caso não encontre nenhum fornecedor
+                fornecedorResult.innerHTML = "<p>Nenhum fornecedor encontrado.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(fornecedor => {
+                const fornecedorDiv = document.createElement('div');
+                fornecedorDiv.innerHTML = `
+                    <p>Nome: ${fornecedor.name}</p>
+                    <p>Contas: ${fornecedor.conta}</p>
+                    <p>Dígito Verificador: ${fornecedor.digito_verificador}</p>
+                    <p>CNPJ: ${fornecedor.cnpj}</p>
+                    <hr>
+                `;
+                fornecedorResult.appendChild(fornecedorDiv);
+            });
+        })
+        .catch(error => { // Tratamento de erros mais robusto
+            console.error("Erro ao buscar fornecedores:", error);
+            const fornecedorResult = document.querySelector('.forneResult');
+            fornecedorResult.innerHTML = `<p>Erro ao buscar fornecedores: ${error.message}</p>`;
+        });
+});
+
+// formFiltroFornecedor.addEventListener('submit', event => {
+//     event.preventDefault()
+
+//     //buscar fornecedor por nome no banco de dados pelo valor do input
+//     const nomeFiltro = document.getElementById('buscarFornecedor').value
+
+//     fetch(`/filtroFornecedor?nome=${nomeFiltro}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log(data)
+//             const fornecedorResult = document.querySelector('.forneResult')
+//             fornecedorResult.innerHTML = ''
+//             data.forEach(fornecedor => {
+//                 const fornecedorDiv = document.createElement('div')
+//                 fornecedorDiv.innerHTML = `
+//                 <p>Nome: ${fornecedor.name}</p>
+//                 <p>Contas: ${fornecedor.contas}</p>
+//                 <p>Dígito Verificador: ${fornecedor.digito_verificador}</p>
+//                 <p>CNPJ: ${fornecedor.cnpj}</p>
+//                 <hr>
+//                 `
+//                 fornecedorResult.appendChild(fornecedorDiv)
+//             })
+//         })
+// })
         
