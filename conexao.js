@@ -8,7 +8,7 @@ const conexao = mysql.createPool({
     database: 'livraria'
 })
 
-conexao.connect()
+conexao.getConnection()
 
 export default conexao
 
