@@ -246,7 +246,7 @@ formFiltroFornecedor.addEventListener('submit', event => {
     const nomeFiltro = document.getElementById('buscarFornecedor').value;
     const nomeConta = document.getElementById('numeroConta').value;
 
-    fetch(`/filtroFornecedor?nome=${nomeFiltro} or conta=${nomeConta}`) // URL correta
+    fetch(`/filtroFornecedor?name=${nomeFiltro}&conta=${nomeConta}`) // URL correta
         .then(response => {
             if (!response.ok) { // Verifica se a resposta foi bem-sucedida (status 2xx)
                 throw new Error(`Erro na requisição: ${response.status}`);

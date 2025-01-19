@@ -130,23 +130,54 @@ app.post('/cadMontagem', (req, res) => {
 //     })
 // })
 
-app.get('/filtroFornecedor', (req, res) => { // Rota corrigida: sem parâmetro na URL
-    const nomeFiltro = req.query.nome; // Obtém o valor da query string
-    const nomeConta = req.query.conta;
-    if (!nomeFiltro) {
-        return res.json([]); // Retorna array vazio se nenhum filtro for fornecido
-    }
-    const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${nomeFiltro}%' OR conta LIKE '%${nomeConta}%'`; // Nome da coluna corrigido para 'nome'
-    conexao.query(sql, (err, result) => { // Remove o segundo argumento desnecessário
-        if (err) {
-            console.error("Erro na consulta:", err); // Log do erro no console para debug
-            res.status(500).json({ error: "Erro ao buscar fornecedores" }); // Retorna erro 500 com mensagem
-        } else {
-            res.json(result);
-        }
-    });
-});
+// app.get('/filtroFornecedor', (req, res) => { // Rota corrigida: sem parâmetro na URL
+//     const nomeFiltro = req.query.name; // Obtém o valor da query string
+//     const nomeConta = req.query.conta;
+//     if (!nomeFiltro) {
+//         return res.json([]); // Retorna array vazio se nenhum filtro for fornecido
+//     }
+//     const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${nomeFiltro}%' OR conta LIKE '%${nomeConta}%'`; // Nome da coluna corrigido para 'nome'
+//     conexao.query(sql, (err, result) => { // Remove o segundo argumento desnecessário
+//         if (err) {
+//             console.error("Erro na consulta:", err); // Log do erro no console para debug
+//             res.status(500).json({ error: "Erro ao buscar fornecedores" }); // Retorna erro 500 com mensagem
+//         } else {
+//             res.json(result);
+//         }
+//     });
+// });
 
+
+app.get('/filtroFornecedor', async (req, res) => {
+    try {
+        const nomeFiltro = req.query.name;
+        const nomeConta = req.query.conta;
+
+        let query = 'SELECT * FROM fornecedores WHERE 1=1'; // Condição sempre verdadeira para facilitar a construção da query
+        const values = [];
+
+        if (nomeFiltro) {
+            query += ' AND name LIKE ?'; // Usando AND para buscar nome E conta
+            values.push(`%${nomeFiltro}%`);
+        }
+
+        if (nomeConta) {
+            query += ' OR conta LIKE ?'; // Usando OR para buscar nome OU conta
+            values.push(`%${nomeConta}%`);
+        }
+
+        if (!nomeFiltro && !nomeConta) {
+            return res.json([]); // Retorna array vazio se nenhum filtro for fornecido
+        }
+
+        const [rows] = await conexao.execute(query, values); // Usando prepared statements
+
+        res.json(rows);
+    } catch (error) {
+        console.error("Erro na consulta:", error);
+        res.status(500).json({ error: "Erro ao buscar fornecedores" });
+    }
+});
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params
