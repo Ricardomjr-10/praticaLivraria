@@ -117,9 +117,10 @@ app.post('/cadMontagem', (req, res) => {
 })
 
 
-app.get('filtroFornecedor?nome=:nome', (req, res) => {
-    const { nome } = req.params
-    const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${nome}%'`
+//buscar fornecedor por nome no banco de dados pelo valor do input
+app.get('/filtroFornecedor', (req, res) => {
+    const { fornecedorPorNome } = req.query
+    const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${fornecedorPorNome}%'`
     conexao.query(sql, (err, result) => {
         if (err) {
             res.send(err)

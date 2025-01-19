@@ -246,9 +246,6 @@ formFiltroFornecedor.addEventListener('submit', event => {
     //buscar fornecedor por nome no banco de dados pelo valor do input
     const nomeFiltro = document.getElementById('buscarFornecedor').value
 
-    const formData = new FormData(formFiltroFornecedor)
-    const data = Object.fromEntries(formData)
-
     fetch(`/filtroFornecedor?nome=${nomeFiltro}`)
         .then(response => response.json())
         .then(data => {
