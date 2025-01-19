@@ -239,3 +239,24 @@ btnFiltros.addEventListener('click', () => {
     divRelatorios.style.display = 'none'
 })
 
+formFiltroFornecedor.addEventListener('submit', event => {
+    event.preventDefault()
+
+    const formData = new FormData(formFiltroFornecedor)
+    const data = Object.fromEntries(formData)
+
+    fetch('/filtroFornecedor', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('forneResult').innerHTML = data
+            console.log(data)
+            formFiltroFornecedor.reset()
+        })
+})
+        
