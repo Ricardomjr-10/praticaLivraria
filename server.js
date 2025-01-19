@@ -148,36 +148,37 @@ app.post('/cadMontagem', (req, res) => {
 // });
 
 
-app.get('/filtroFornecedor', async (req, res) => {
-    try {
-        const nomeFiltro = req.query.name;
-        const nomeConta = req.query.conta;
+app.get('/filtroFornecedor',  (req, res) => {
+    const nomefiltro = req.query.name
+    const nomeConta = req.query.conta
 
-        let query = 'SELECT * FROM fornecedores WHERE 1=1'; // Condição sempre verdadeira para facilitar a construção da query
-        const values = [];
+    let query = 'SELECT * FROM fornecedores WHERE 1=1'
+    const params = []
 
-        if (nomeFiltro) {
-            query += ' AND name LIKE ?'; // Usando AND para buscar nome E conta
-            values.push(`%${nomeFiltro}%`);
-        }
-
-        if (nomeConta) {
-            query += ' OR conta LIKE ?'; // Usando OR para buscar nome OU conta
-            values.push(`%${nomeConta}%`);
-        }
-
-        if (!nomeFiltro && !nomeConta) {
-            return res.json([]); // Retorna array vazio se nenhum filtro for fornecido
-        }
-
-        const [rows] = await conexao.execute(query, values); // Usando prepared statements
-
-        res.json(rows);
-    } catch (error) {
-        console.error("Erro na consulta:", error);
-        res.status(500).json({ error: "Erro ao buscar fornecedores" });
+    if (nomefiltro) {
+        query += ' AND name LIKE ?'
+        params.push(`%${nomefiltro}%`)
     }
-});
+
+    if (nomeConta) {
+        query += ' AND conta LIKE ?'
+        params.push(`%${nomeConta}%`)
+    }
+
+    conexao.query(query, params, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+    
+
+        
+
+       
+ 
+})
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params
