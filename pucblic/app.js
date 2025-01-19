@@ -281,6 +281,13 @@ formFiltroFornecedor.addEventListener('submit', event => {
         });
 });
 
+
+formFiltroLivro.addEventListener('submit', event => {
+    event.preventDefault()
+
+    const tituloFiltro = document.getElementById('buscarLivro').value
+    const autorFiltro = document.getElementById('autorLivro').value
+})
 // formFiltroFornecedor.addEventListener('submit', event => {
 //     event.preventDefault()
 

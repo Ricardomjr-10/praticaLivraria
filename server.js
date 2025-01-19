@@ -173,11 +173,6 @@ app.get('/filtroFornecedor',  (req, res) => {
         }
     })
     
-
-        
-
-       
- 
 })
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
