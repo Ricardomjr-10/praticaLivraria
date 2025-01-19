@@ -1,5 +1,7 @@
 //import conexao  from './conexao.js'  
 
+import { response } from "express"
+
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
 const formFornecedor = document.getElementById('formFornecedor')
@@ -287,6 +289,43 @@ formFiltroLivro.addEventListener('submit', event => {
 
     const tituloFiltro = document.getElementById('buscarLivro').value
     const autorFiltro = document.getElementById('autorLivro').value
+
+    fetch(`/filtroLivro?titulo=${tituloFiltro}&autor_id=${autorFiltro}`)
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`Erro na requisição: ${response.status}`);
+    }
+    return response.json();
+})
+.then(data => {
+    const livroResult = document.querySelector('.livroResult');
+    livroResult.innerHTML = '';
+
+    if (data.length === 0) {
+        livroResult.innerHTML = "<p>Nenhum livro encontrado.</p>";
+        return; // Impede que o loop continue sem dados
+
+    }
+
+    data.forEach(livro => {
+        const livroDiv = document.createElement('div');
+        livroDiv.innerHTML = `
+            <p>ISBN: ${livro.isbn}</p>
+            <p>Título: ${livro.titulo}</p>
+            <p>Autor: ${livro.autor}</p>
+            <p>Editora: ${livro.editora}</p>
+            <p>Quantidade: ${livro.quantidade}</p>
+            <p>Preço: ${livro.preco}</p>
+            <hr>
+        `;
+        livroResult.appendChild(livroDiv);
+    });
+})
+.catch(error => {
+    console.error("Erro ao buscar livros:", error);
+    const livroResult = document.querySelector('.livroResult');
+    livroResult.innerHTML = `<p>Erro ao buscar livros: ${error.message}</p>`;
 })
 // formFiltroFornecedor.addEventListener('submit', event => {
 //     event.preventDefault()
