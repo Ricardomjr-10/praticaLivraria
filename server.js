@@ -174,6 +174,32 @@ app.get('/filtroFornecedor',  (req, res) => {
     })
     
 })
+
+app.get('/filtroLivro', (req, res) => {
+    const nomefiltro = req.query.titulo
+    const nomeAutor = req.query.autor
+
+    let query = 'SELECT * FROM livros WHERE 1=1'
+    const params = []
+
+    if (nomefiltro) {
+        query += ' AND name LIKE ?'
+        params.push(`%${nomefiltro}%`)
+    }
+
+    if (nomeAutor) {
+        query += ' AND autor_id = ?'
+        params.push(`${nomeAutor}`)
+    }
+
+    conexao.query(query, params, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params
