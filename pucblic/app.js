@@ -254,7 +254,7 @@ formFiltroFornecedor.addEventListener('submit', event => {
             data.forEach(fornecedor => {
                 const fornecedorDiv = document.createElement('div')
                 fornecedorDiv.innerHTML = `
-                <p>Nome: ${fornecedor.nome}</p>
+                <p>Nome: ${fornecedor.name}</p>
                 <p>Contato: ${fornecedor.contato}</p>
                 <p>Endereço: ${fornecedor.endereco}</p>
                 <p>Telefone: ${fornecedor.telefone}</p>
