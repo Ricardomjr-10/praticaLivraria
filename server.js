@@ -118,17 +118,33 @@ app.post('/cadMontagem', (req, res) => {
 
 
 //buscar fornecedor por nome no banco de dados pelo valor do input
-app.get('/filtroFornecedor', (req, res) => {
-    const fornecedorPorNome = req.query.name
-    const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${fornecedorPorNome}%'`
-    conexao.query(sql, (err, result) => {
+// app.get('/filtroFornecedor', (req, res) => {
+//     const fornecedorPorNome = req.query.name
+//     const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${fornecedorPorNome}%'`
+//     conexao.query(sql, (err, result) => {
+//         if (err) {
+//             res.json(err)
+//         } else {
+//             res.json(result)
+//         }
+//     })
+// })
+
+app.get('/filtroFornecedor', (req, res) => { // Rota corrigida: sem parâmetro na URL
+    const nomeFiltro = req.query.nome; // Obtém o valor da query string
+    if (!nomeFiltro) {
+        return res.json([]); // Retorna array vazio se nenhum filtro for fornecido
+    }
+    const sql = `SELECT * FROM fornecedores WHERE name LIKE '%${nomeFiltro}%'`; // Nome da coluna corrigido para 'nome'
+    conexao.query(sql, (err, result) => { // Remove o segundo argumento desnecessário
         if (err) {
-            res.json(err)
+            console.error("Erro na consulta:", err); // Log do erro no console para debug
+            res.status(500).json({ error: "Erro ao buscar fornecedores" }); // Retorna erro 500 com mensagem
         } else {
-            res.json(result)
+            res.json(result);
         }
-    })
-})
+    });
+});
 
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
