@@ -288,7 +288,6 @@ formFiltroLivro.addEventListener('submit', event => {
     const autorFiltro = document.getElementById('autorLivro').value
 
     fetch(`/filtroLivro?titulo=${tituloFiltro}&autor_id=${autorFiltro}`)
-
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro na requisição: ${response.status}`);
@@ -308,15 +307,13 @@ formFiltroLivro.addEventListener('submit', event => {
             data.forEach(livro => {
                 const livroDiv = document.createElement('div');
                 livroDiv.innerHTML = `
-            <p>ISBN: ${livro.isbn}</p>
-            <p>Título: ${livro.titulo}</p>
-            <p>Autor: ${livro.autor}</p>
-            <p>Editora: ${livro.editora}</p>
-            <p>Quantidade: ${livro.quantidade}</p>
-            <p>Preço: ${livro.preco}</p>
-            <hr>
-        `;
+                  <p>ISBN: ${livro.isbn}</p>
+                  <p>Título: ${livro.titulo}</p>
+                  <p>Autor: ${livro.autor_id}</p>
+                  <hr>
+                `;
                 livroResult.appendChild(livroDiv);
+                console.log(livroResult)
             });
         })
         .catch(error => {
