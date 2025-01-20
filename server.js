@@ -177,9 +177,10 @@ app.get('/filtroFornecedor',  (req, res) => {
 
 app.get('/filtroLivro', (req, res) => {
     const nomefiltro = req.query.titulo
-    const nomeAutor = req.query.autor_id
+    const nomeAutor = req.query.autor
 
     let query = 'SELECT * FROM livros WHERE 1=1'
+
     const params = []
 
     if (nomefiltro) {
@@ -188,8 +189,8 @@ app.get('/filtroLivro', (req, res) => {
     }
 
     if (nomeAutor) {
-        query += ' AND autor_id = ?'
-        params.push(`${nomeAutor}`)
+        query += ' AND autor_id LIKE ?'
+        params.push(`%${nomeAutor}%`)
     }
 
     conexao.query(query, params, (err, result) => {
