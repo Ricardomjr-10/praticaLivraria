@@ -245,6 +245,11 @@ formFiltroFornecedor.addEventListener('submit', event => {
     const nomeFiltro = document.getElementById('buscarFornecedor').value;
     const nomeConta = document.getElementById('numeroConta').value;
 
+    if (nomeFiltro === '' && nomeConta === '') {
+        alert('Preencha pelo menos um campo para realizar a busca.');
+        return;
+    }
+
     fetch(`/filtroFornecedor?name=${nomeFiltro}&conta=${nomeConta}`) // URL correta
         .then(response => {
             if (!response.ok) { // Verifica se a resposta foi bem-sucedida (status 2xx)
@@ -286,6 +291,11 @@ formFiltroLivro.addEventListener('submit', event => {
 
     const tituloFiltro = document.getElementById('buscarLivro').value
     const autorFiltro = document.getElementById('autorLivro').value
+
+    if (tituloFiltro === '' && autorFiltro === '') {
+        alert('Preencha pelo menos um campo para realizar a busca.');
+        return;
+    }
 
     fetch(`/filtroLivro?titulo=${tituloFiltro}&autor_id=${autorFiltro}`)
         .then(response => {
