@@ -1,6 +1,3 @@
-//import conexao  from './conexao.js'  
-
-import { response } from "express"
 
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
