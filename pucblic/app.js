@@ -88,7 +88,7 @@ fetch('/allPecas')
 
 formLivro.addEventListener('submit', (event) => {
     event.preventDefault();
-    
+
     const formData = new FormData(formLivro);
     const data = Object.fromEntries(formData);
 
@@ -288,26 +288,26 @@ formFiltroLivro.addEventListener('submit', event => {
     const autorFiltro = document.getElementById('autorLivro').value
 
     fetch(`/filtroLivro?titulo=${tituloFiltro}&autor_id=${autorFiltro}`)
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`Erro na requisição: ${response.status}`);
-    }
-    return response.json();
-})
-.then(data => {
-    const livroResult = document.querySelector('.livroResult');
-    livroResult.innerHTML = '';
 
-    if (data.length === 0) {
-        livroResult.innerHTML = "<p>Nenhum livro encontrado.</p>";
-        return; // Impede que o loop continue sem dados
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const livroResult = document.querySelector('.livroResult');
+            livroResult.innerHTML = '';
 
-    }
+            if (data.length === 0) {
+                livroResult.innerHTML = "<p>Nenhum livro encontrado.</p>";
+                return; // Impede que o loop continue sem dados
 
-    data.forEach(livro => {
-        const livroDiv = document.createElement('div');
-        livroDiv.innerHTML = `
+            }
+
+            data.forEach(livro => {
+                const livroDiv = document.createElement('div');
+                livroDiv.innerHTML = `
             <p>ISBN: ${livro.isbn}</p>
             <p>Título: ${livro.titulo}</p>
             <p>Autor: ${livro.autor}</p>
@@ -316,13 +316,14 @@ formFiltroLivro.addEventListener('submit', event => {
             <p>Preço: ${livro.preco}</p>
             <hr>
         `;
-        livroResult.appendChild(livroDiv);
-    });
-})
-.catch(error => {
-    console.error("Erro ao buscar livros:", error);
-    const livroResult = document.querySelector('.livroResult');
-    livroResult.innerHTML = `<p>Erro ao buscar livros: ${error.message}</p>`;
+                livroResult.appendChild(livroDiv);
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao buscar livros:", error);
+            const livroResult = document.querySelector('.livroResult');
+            livroResult.innerHTML = `<p>Erro ao buscar livros: ${error.message}</p>`;
+        })
 })
 // formFiltroFornecedor.addEventListener('submit', event => {
 //     event.preventDefault()
@@ -349,4 +350,3 @@ formFiltroLivro.addEventListener('submit', event => {
 //             })
 //         })
 // })
-        
