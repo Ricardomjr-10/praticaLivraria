@@ -200,7 +200,7 @@ app.get('/filtroLivro', (req, res) => {
     console.log("Query executada:", query); // Imprime a query no console
     console.log("Parâmetros:", params); // Imprime os parâmetros
 
-    db.all(query, params, (err, rows) => {
+    conexao.all(query, params, (err, rows) => {
         if (err) {
             console.error("Erro na consulta:", err);
             res.status(500).json({ error: err.message });
