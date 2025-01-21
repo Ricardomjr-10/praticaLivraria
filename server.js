@@ -194,33 +194,16 @@ app.get('/filtroLivro', (req, res) => {
 
     if (nomeAutor) {
         query += 'AND autores.name  LIKE ?' 
-        params.push(`%${nomeAutor}%`)
+        params.push(`${nomeAutor}`)
     }
 
-    console.log("Query executada:", query); // Imprime a query no console
-    console.log("Parâmetros:", params); // Imprime os parâmetros
-
-    conexao.query(query, params, (err, rows) => {
+    conexao.query(query, params, (err, result) => {
         if (err) {
-            console.error("Erro na consulta:", err);
-            res.status(500).json({ error: err.message });
-            return;
+            res.send(err)
+        } else {
+            res.send(result)
         }
-
-        if (!rows || rows.length === 0) {
-            console.log("Nenhum livro encontrado com os critérios especificados.");
-            return res.status(404).json({ message: "Nenhum livro encontrado." });
-        }
-
-        res.json(rows);
-    });
-    // conexao.query(query, params, (err, result) => {
-    //     if (err) {
-    //         res.send(err)
-    //     } else {
-    //         res.send(result)
-    //     }
-    // })
+    })
 })
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {

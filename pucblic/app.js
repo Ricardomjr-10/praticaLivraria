@@ -297,7 +297,7 @@ formFiltroLivro.addEventListener('submit', event => {
         return;
     }
 
-    fetch(`/filtroLivro?titulo=${tituloFiltro}&autor_id=${autorFiltro}`)
+    fetch(`/filtroLivro?titulo=${tituloFiltro}&autor=${autorFiltro}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro na requisição: ${response.status}`);
