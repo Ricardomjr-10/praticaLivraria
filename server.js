@@ -179,7 +179,7 @@ app.get('/filtroLivro', (req, res) => {
     const nomefiltro = req.query.titulo
     const nomeAutor = req.query.autor_id
 
-    let query = ` SELECT livros.*, autores.id AS name_autor
+    let query = ` SELECT livros.*, autores.name AS name_autor
         FROM livros
         INNER JOIN autores ON livros.autor_id = autores.id
         WHERE 1=1
@@ -197,13 +197,30 @@ app.get('/filtroLivro', (req, res) => {
         params.push(`${nomeAutor}`)
     }
 
-    conexao.query(query, params, (err, result) => {
+    console.log("Query executada:", query); // Imprime a query no console
+    console.log("Parâmetros:", params); // Imprime os parâmetros
+
+    db.all(query, params, (err, rows) => {
         if (err) {
-            res.send(err)
-        } else {
-            res.send(result)
+            console.error("Erro na consulta:", err);
+            res.status(500).json({ error: err.message });
+            return;
         }
-    })
+
+        if (!rows || rows.length === 0) {
+            console.log("Nenhum livro encontrado com os critérios especificados.");
+            return res.status(404).json({ message: "Nenhum livro encontrado." });
+        }
+
+        res.json(rows);
+    });
+    // conexao.query(query, params, (err, result) => {
+    //     if (err) {
+    //         res.send(err)
+    //     } else {
+    //         res.send(result)
+    //     }
+    // })
 })
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
