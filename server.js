@@ -193,7 +193,7 @@ app.get('/filtroLivro', (req, res) => {
     }
 
     if (nomeAutor) {
-        query += 'AND autores.nome  LIKE ?' 
+        query += 'AND autores.name  LIKE ?' 
         params.push(`%${nomeAutor}%`)
     }
 
