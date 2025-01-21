@@ -188,12 +188,12 @@ app.get('/filtroLivro', (req, res) => {
     const params = []
 
     if (nomefiltro) {
-        query += ' AND titulo LIKE ?'
+        query += ' AND livros.titulo LIKE ?'
         params.push(`%${nomefiltro}%`)
     }
 
     if (nomeAutor) {
-        query += 'AND autor_id  LIKE ?' 
+        query += 'AND autores.nome  LIKE ?' 
         params.push(`%${nomeAutor}%`)
     }
 
