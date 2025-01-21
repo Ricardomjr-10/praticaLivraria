@@ -194,13 +194,13 @@ app.get('/filtroLivro', (req, res) => {
 
     if (nomeAutor) {
         query += 'AND autores.name  LIKE ?' 
-        params.push(`${nomeAutor}`)
+        params.push(`%${nomeAutor}%`)
     }
 
     console.log("Query executada:", query); // Imprime a query no console
     console.log("Parâmetros:", params); // Imprime os parâmetros
 
-    conexao.all(query, params, (err, rows) => {
+    conexao.query(query, params, (err, rows) => {
         if (err) {
             console.error("Erro na consulta:", err);
             res.status(500).json({ error: err.message });
