@@ -177,7 +177,7 @@ app.get('/filtroFornecedor',  (req, res) => {
 
 app.get('/filtroLivro', (req, res) => {
     const nomefiltro = req.query.titulo
-    const nomeAutor = req.query.autor
+    const nomeAutor = req.query.autor_id
 
     let query = ` SELECT livros.*, autores.name AS name_autor
         FROM livros
