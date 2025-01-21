@@ -179,7 +179,7 @@ app.get('/filtroLivro', (req, res) => {
     const nomefiltro = req.query.titulo
     const nomeAutor = req.query.autor_id
 
-    let query = ` SELECT livros.*, autores.name AS name_autor
+    let query = ` SELECT livros.*, autores.id AS name_autor
         FROM livros
         INNER JOIN autores ON livros.autor_id = autores.id
         WHERE 1=1
