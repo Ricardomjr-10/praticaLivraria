@@ -179,7 +179,11 @@ app.get('/filtroLivro', (req, res) => {
     const nomefiltro = req.query.titulo
     const nomeAutor = req.query.autor
 
-    let query = 'SELECT * FROM livros WHERE 1=1'
+    let query = ` SELECT livros.*, autores.nome AS nome_autor
+        FROM livros
+        INNER JOIN autores ON livros.autor_id = autores.id
+        WHERE 1=1
+        `
 
     const params = []
 
@@ -189,7 +193,7 @@ app.get('/filtroLivro', (req, res) => {
     }
 
     if (nomeAutor) {
-        query += ' AND autor_id LIKE ?' 
+        query += 'AND autor_id  LIKE ?' 
         params.push(`%${nomeAutor}%`)
     }
 
