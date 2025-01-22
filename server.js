@@ -175,7 +175,7 @@ app.get('/filtroFornecedor',  (req, res) => {
     
 })
 
-aapp.get('/filtroLivro', (req, res) => {
+app.get('/filtroLivro', (req, res) => {
     const nomefiltro = req.query.titulo;
     const nomeAutor = req.query.autor_id;
 
@@ -194,11 +194,13 @@ aapp.get('/filtroLivro', (req, res) => {
         query += ' AND autores.id = ?'; // Alterado para usar o ID do autor
         params.push(nomeAutor);
     }
-
+   
     conexao.query(query, params, (err, result) => {
         if (err) {
+            console.log(query, params)
             return res.status(500).send(err); // Retorna um erro 500 em caso de falha
         } else {
+            console.log(query, params)
             return res.send(result); // Retorna os resultados
         }
     });
