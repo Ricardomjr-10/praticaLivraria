@@ -190,7 +190,7 @@ app.get('/filtroLivro', (req, res) => {
 
     if (nomeAutor) {
         query += ' AND autores.id = ?' 
-        params.push(`${nomeAutor}`)
+        params.push(`%${nomeAutor}%`)
     }
 
     conexao.query(query, params, (err, result) => {
