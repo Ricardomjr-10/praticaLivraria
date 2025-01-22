@@ -175,32 +175,34 @@ app.get('/filtroFornecedor',  (req, res) => {
     
 })
 
-app.get('/filtroLivro', (req, res) => {
-    const nomefiltro = req.query.titulo
-    const nomeAutor = req.query.autor_id
+aapp.get('/filtroLivro', (req, res) => {
+    const nomefiltro = req.query.titulo;
+    const nomeAutor = req.query.autor_id;
 
-    let query = `SELECT livros.*, autores.name AS autor_name FROM livros JOIN autores ON livros.autor_id = autores.id WHERE 1=1`
+    let query = `SELECT livros.*, autores.name AS autor_name FROM livros 
+                 JOIN autores ON livros.autor_id = autores.id 
+                 WHERE 1=1`;
 
-    const params = []
+    const params = [];
 
     if (nomefiltro) {
-        query += ' AND livros.titulo LIKE ?'
-        params.push(`%${nomefiltro}%`)
+        query += ' AND livros.titulo LIKE ?';
+        params.push(`%${nomefiltro}%`);
     }
 
     if (nomeAutor) {
-        query += ' AND autores.id = ?' 
-        params.push(`%${nomeAutor}%`)
+        query += ' AND autores.id = ?'; // Alterado para usar o ID do autor
+        params.push(nomeAutor);
     }
 
     conexao.query(query, params, (err, result) => {
         if (err) {
-            res.send(err)
+            return res.status(500).send(err); // Retorna um erro 500 em caso de falha
         } else {
-            res.send(result)
+            return res.send(result); // Retorna os resultados
         }
-    })
-})
+    });
+});
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params
