@@ -188,19 +188,19 @@ app.get('/filtroLivro', (req, res) => {
     if (nomefiltro) {
         query += ' AND livros.titulo LIKE ?';
         params.push(`%${nomefiltro}%`);
+        console.log(query, params)
     }
 
     if (nomeAutor) {
         query += ' AND autores.id = ?'; // Alterado para usar o ID do autor
         params.push(nomeAutor);
+        console.log(query, params)
     }
    
     conexao.query(query, params, (err, result) => {
         if (err) {
-            console.log(query, params)
             return res.status(500).send(err); // Retorna um erro 500 em caso de falha
         } else {
-            console.log(query, params)
             return res.send(result); // Retorna os resultados
         }
     });
