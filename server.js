@@ -185,16 +185,15 @@ app.get('/filtroLivro', (req, res) => {
 
     const params = [];
 
+
     if (nomefiltro) {
         query += ' AND livros.titulo LIKE ?';
         params.push(`%${nomefiltro}%`);
-        console.log(query, params)
     }
 
     if (nomeAutor) {
         query += ' AND autores.id = ?'; // Alterado para usar o ID do autor
         params.push(nomeAutor);
-        console.log(query, params)
     }
    
     conexao.query(query, params, (err, result) => {

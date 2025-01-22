@@ -285,19 +285,18 @@ formFiltroFornecedor.addEventListener('submit', event => {
         });
 });
 
-
 formFiltroLivro.addEventListener('submit', event => {
     event.preventDefault()
 
     const tituloFiltro = document.getElementById('buscarLivro').value
-    const autorFiltro = document.getElementById('autorLivro').value
-
+    const autorFiltro = document.getElementById('autorBuscar').value
+    console.log(tituloFiltro, autorFiltro)
     if (tituloFiltro === '' && autorFiltro === '') {
         alert('Preencha pelo menos um campo para realizar a busca.');
         return;
     }
 
-    fetch(`/filtroLivro?titulo=${tituloFiltro}&autor_id=${autorFiltro}`)
+    fetch(`/filtroLivro?titulo=${encodeURIComponent(tituloFiltro)}&autor_id=${encodeURIComponent(autorFiltro)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro na requisição: ${response.status}`);
@@ -307,7 +306,7 @@ formFiltroLivro.addEventListener('submit', event => {
         .then(data => {
             const livroResult = document.querySelector('.livroResult');
             livroResult.innerHTML = '';
-
+            console.log(data)
             if (data.length === 0) {
                 livroResult.innerHTML = "<p>Nenhum livro encontrado.</p>";
                 return; // Impede que o loop continue sem dados
@@ -319,7 +318,7 @@ formFiltroLivro.addEventListener('submit', event => {
                 livroDiv.innerHTML = `
                   <p>ISBN: ${livro.isbn}</p>
                   <p>Título: ${livro.titulo}</p>
-                  <p>Autor: ${livro.autor_id}</p>
+                  <p>Autor: ${livro.autor_name}</p>
                   <hr>
                 `;
                 livroResult.appendChild(livroDiv);
