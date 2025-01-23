@@ -233,6 +233,8 @@ app.get('/filtroMontagem', (req, res) => {
         }
     })
     })
+
+   
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params

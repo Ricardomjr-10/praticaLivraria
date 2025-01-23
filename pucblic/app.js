@@ -386,5 +386,30 @@ formFiltroMontagem.addEventListener('submit', event => {
         })
 })  
 
+relatorioAutores.addEventListener('click', () => {
+    //rota com nome dos autores e seus livros
+    fetch('/relatorioAutores')
+        .then(response => response.json())
+        .then(data => {
+            const relatorioResult = document.querySelector('.relatorioResult');
+            relatorioResult.innerHTML = '';
+
+            if (data.length === 0) {
+                relatorioResult.innerHTML = "<p>Nenhum autor encontrado.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(autor => {
+                const autorDiv = document.createElement('div');
+                autorDiv.innerHTML = `
+                    <p>Nome: ${autor.name}</p>
+                    <p>CPF: ${autor.cpf}</p>
+                    <p>ISBN: ${autor.titulo}</p>
+                    <hr>
+                `;
+                relatorioResult.appendChild(autorDiv);
+            })
+        })
+})
            
    
