@@ -20,6 +20,9 @@ const divRelatorios = document.querySelector('.relatorio')
 const formFiltroFornecedor = document.getElementById('fornecedorPorNome')
 const formFiltroLivro = document.getElementById('livroPorTitulo')
 const formFiltroMontagem = document.getElementById('montagemPorNome')
+const relatorioAutores = document.getElementById('btnAutores')
+const relatorioFornecedores = document.getElementById('btnFornecedores')
+const relatorioLivros = document.getElementById('btnLivros')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -237,6 +240,12 @@ btnFiltros.addEventListener('click', () => {
     divCadastro.style.display = 'none'
     divFiltros.style.display = 'flex'
     divRelatorios.style.display = 'none'
+})
+
+btnRelatorios.addEventListener('click', () => {
+    divCadastro.style.display = 'none'
+    divFiltros.style.display = 'none'
+    divRelatorios.style.display = 'flex'
 })
 
 formFiltroFornecedor.addEventListener('submit', event => {
