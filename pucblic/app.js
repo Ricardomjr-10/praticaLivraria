@@ -22,7 +22,7 @@ const formFiltroLivro = document.getElementById('livroPorTitulo')
 const formFiltroMontagem = document.getElementById('montagemPorNome')
 const relatorioAutores = document.getElementById('btnAutores')
 const relatorioFornecedores = document.getElementById('btnFornecedores')
-const relatorioLivros = document.getElementById('btnLivros')
+const relatorioLivros = document.getElementById('btnLivroMontagem')
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
