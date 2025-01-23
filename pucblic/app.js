@@ -438,3 +438,28 @@ relatorioAutores.addEventListener('click', () => {
         })
 })
             
+
+relatorioLivros.addEventListener('click', () => {
+    fetch('/relatorioMontagem')
+        .then(response => response.json())
+        .then(data => {
+            const relatorioResult = document.querySelector('.relatorioResult');
+            relatorioResult.innerHTML = '';
+
+            if (data.length === 0) {
+                relatorioResult.innerHTML = "<p>Nenhum livro encontrado.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(livro => {
+                const livroDiv = document.createElement('div');
+                livroDiv.innerHTML = `
+                    <p>Nome: ${livro.name}</p>
+                    <p>Livro: ${livro.livro_id}</p>
+                    <p>Peca: ${livro.peca_id}</p>
+                    <hr>
+                `;
+                relatorioResult.appendChild(livroDiv);
+            })
+        })
+})
