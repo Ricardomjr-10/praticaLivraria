@@ -245,6 +245,17 @@ app.get('/filtroMontagem', (req, res) => {
        })
    })
 
+   //rota para fornecedores com nome, cnpj, conta e digito verificador
+   app.get('/relatorioFornecedores', (req, res) => {
+       conexao.query('SELECT * FROM fornecedores', (err, result) => {
+           if (err) {
+               res.send(err)
+           } else {
+               res.send(result)
+           }
+       })
+   })
+
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params

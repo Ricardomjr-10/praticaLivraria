@@ -412,4 +412,29 @@ relatorioAutores.addEventListener('click', () => {
         })
 })
            
-   
+   relatorioFornecedores.addEventListener('click', () => {
+    fetch('/relatorioFornecedores')
+        .then(response => response.json())
+        .then(data => {
+            const relatorioResult = document.querySelector('.relatorioResult');
+            relatorioResult.innerHTML = '';
+
+            if (data.length === 0) {
+                relatorioResult.innerHTML = "<p>Nenhum fornecedor encontrado.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(fornecedor => {
+                const fornecedorDiv = document.createElement('div');
+                fornecedorDiv.innerHTML = `
+                    <p>Nome: ${fornecedor.name}</p>
+                    <p>CNPJ: ${fornecedor.cnpj}</p>
+                    <p>Conta: ${fornecedor.conta}</p>
+                    <p>Dígito Verificador: ${fornecedor.digito_verificador}</p>
+                    <hr>
+                `;
+                relatorioResult.appendChild(fornecedorDiv);
+            })
+        })
+})
+            
