@@ -207,10 +207,10 @@ app.get('/filtroLivro', (req, res) => {
 
 app.get('/filtromontagem', (req, res) => {
     const nomefiltro = req.query.name;
-    const livroId = req.query.peca;
+    const nomePeca = req.query.peca_id;
 
-    let query = `SELECT montagem.*, livros.titulo AS livro_titulo FROM montagem 
-                 JOIN livros ON montagem.peca = livros.id 
+    let query = `SELECT montagem.*, pecas.name AS peca_name FROM montagem 
+                 JOIN pecas ON montagem.peca_id = pecas.id 
                  WHERE 1=1`;
 
     const params = [];
@@ -220,9 +220,9 @@ app.get('/filtromontagem', (req, res) => {
         params.push(`%${nomefiltro}%`);
     }
 
-    if (livroId) {
-        query += ' AND montagem.livro_id = ?';
-        params.push(livroId);
+    if (nomePeca) {
+        query += ' AND pecas.id = ?';
+        params.push(nomePeca);
     }
 
     conexao.query(query, params, (err, result) => {
