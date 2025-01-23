@@ -234,7 +234,17 @@ app.get('/filtroMontagem', (req, res) => {
     })
     })
 
-   
+   //rota para autores com nome, cpf e livros
+   app.get('/relatorioAutores', (req, res) => {
+       conexao.query('SELECT autores.name, autores.cpf, livros.titulo FROM autores LEFT JOIN livros ON autores.id = livros.autor_id', (err, result) => {
+           if (err) {
+               res.send(err)
+           } else {
+               res.send(result)
+           }
+       })
+   })
+
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params

@@ -404,7 +404,7 @@ relatorioAutores.addEventListener('click', () => {
                 autorDiv.innerHTML = `
                     <p>Nome: ${autor.name}</p>
                     <p>CPF: ${autor.cpf}</p>
-                    <p>ISBN: ${autor.titulo}</p>
+                    <p>Titulo: ${autor.titulo}</p>
                     <hr>
                 `;
                 relatorioResult.appendChild(autorDiv);
