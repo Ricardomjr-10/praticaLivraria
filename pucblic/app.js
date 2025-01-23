@@ -351,7 +351,7 @@ formFiltroMontagem.addEventListener('submit', event => {
             return response.json();
         })
         .then(data => {
-            const montagemResult = document.querySelector('.montagemResult');
+            const montagemResult = document.querySelector('.montaResult');
             montagemResult.innerHTML = '';
 
             if (data.length === 0) {
@@ -363,8 +363,8 @@ formFiltroMontagem.addEventListener('submit', event => {
                 const montagemDiv = document.createElement('div');
                 montagemDiv.innerHTML = `
                     <p>Nome: ${montagem.name}</p>
-                    <p>Livro: ${montagem.livro_name}</p>
-                    <p>Peças: ${montagem.peca_name}</p>
+                    <p>Livro: ${montagem.livro_id}</p>
+                    <p>Peças: ${montagem.peca_id}</p>
                     <hr>
                 `;
                 montagemResult.appendChild(montagemDiv);
@@ -372,7 +372,7 @@ formFiltroMontagem.addEventListener('submit', event => {
         })
         .catch(error => {
             console.error("Erro ao buscar montagens:", error);
-            const montagemResult = document.querySelector('.montagemResult');
+            const montagemResult = document.querySelector('.montaResult');
             montagemResult.innerHTML = `<p>Erro ao buscar montagens: ${error.message}</p>`;
         })
 })  
