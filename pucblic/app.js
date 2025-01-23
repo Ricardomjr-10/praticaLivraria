@@ -343,7 +343,7 @@ formFiltroMontagem.addEventListener('submit', event => {
         return;
     }
 
-    fetch(`/filtroMontagem?name=${encodeURIComponent(nomeFiltro)}&peca=${encodeURIComponent(pecaFiltro)}`)
+    fetch(`/filtroMontagem?name=${encodeURIComponent(nomeFiltro)}&peca_id=${encodeURIComponent(pecaFiltro)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Erro na requisição: ${response.status}`);

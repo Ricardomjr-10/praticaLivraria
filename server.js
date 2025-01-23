@@ -205,7 +205,7 @@ app.get('/filtroLivro', (req, res) => {
     });
 });
 
-app.get('/filtromontagem', (req, res) => {
+app.get('/filtroMontagem', (req, res) => {
     const nomefiltro = req.query.name;
     const nomePeca = req.query.peca_id;
 
