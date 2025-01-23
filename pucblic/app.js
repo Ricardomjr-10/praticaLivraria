@@ -231,21 +231,21 @@ isbnInput.addEventListener('input', () => {
 })
 
 btnCadastro.addEventListener('click', () => {
-    divCadastro.style.display = 'flex'
+    divCadastro.style.display = 'block'
     divFiltros.style.display = 'none'
     divRelatorios.style.display = 'none'
 })
 
 btnFiltros.addEventListener('click', () => {
     divCadastro.style.display = 'none'
-    divFiltros.style.display = 'flex'
+    divFiltros.style.display = 'block'
     divRelatorios.style.display = 'none'
 })
 
 btnRelatorios.addEventListener('click', () => {
     divCadastro.style.display = 'none'
     divFiltros.style.display = 'none'
-    divRelatorios.style.display = 'flex'
+    divRelatorios.style.display = 'block'
 })
 
 formFiltroFornecedor.addEventListener('submit', event => {
