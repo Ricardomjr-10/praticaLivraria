@@ -322,7 +322,7 @@ formFiltroLivro.addEventListener('submit', event => {
                   <hr>
                 `;
                 livroResult.appendChild(livroDiv);
-                console.log(livroResult)
+                
             });
         })
         .catch(error => {
@@ -331,28 +331,51 @@ formFiltroLivro.addEventListener('submit', event => {
             livroResult.innerHTML = `<p>Erro ao buscar livros: ${error.message}</p>`;
         })
 })
-// formFiltroFornecedor.addEventListener('submit', event => {
-//     event.preventDefault()
 
-//     //buscar fornecedor por nome no banco de dados pelo valor do input
-//     const nomeFiltro = document.getElementById('buscarFornecedor').value
+formFiltroMontagem.addEventListener('submit', event => {
+    event.preventDefault()
 
-//     fetch(`/filtroFornecedor?nome=${nomeFiltro}`)
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data)
-//             const fornecedorResult = document.querySelector('.forneResult')
-//             fornecedorResult.innerHTML = ''
-//             data.forEach(fornecedor => {
-//                 const fornecedorDiv = document.createElement('div')
-//                 fornecedorDiv.innerHTML = `
-//                 <p>Nome: ${fornecedor.name}</p>
-//                 <p>Contas: ${fornecedor.contas}</p>
-//                 <p>Dígito Verificador: ${fornecedor.digito_verificador}</p>
-//                 <p>CNPJ: ${fornecedor.cnpj}</p>
-//                 <hr>
-//                 `
-//                 fornecedorResult.appendChild(fornecedorDiv)
-//             })
-//         })
-// })
+    const nomeFiltro = document.getElementById('buscarMontagem').value
+    const pecaFiltro = document.getElementById('buscarPecasMontagem').value
+
+    if (nomeFiltro === '' && pecaFiltro === '') {
+        alert('Preencha pelo menos um campo para realizar a busca.');
+        return;
+    }
+
+    fetch(`/filtroMontagem?name=${encodeURIComponent(nomeFiltro)}&peca=${encodeURIComponent(pecaFiltro)}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const montagemResult = document.querySelector('.montagemResult');
+            montagemResult.innerHTML = '';
+
+            if (data.length === 0) {
+                montagemResult.innerHTML = "<p>Nenhuma montagem encontrada.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(montagem => {
+                const montagemDiv = document.createElement('div');
+                montagemDiv.innerHTML = `
+                    <p>Nome: ${montagem.name}</p>
+                    <p>Livro: ${montagem.livro_name}</p>
+                    <p>Peças: ${montagem.peca_name}</p>
+                    <hr>
+                `;
+                montagemResult.appendChild(montagemDiv);
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao buscar montagens:", error);
+            const montagemResult = document.querySelector('.montagemResult');
+            montagemResult.innerHTML = `<p>Erro ao buscar montagens: ${error.message}</p>`;
+        })
+})  
+
+           
+   
