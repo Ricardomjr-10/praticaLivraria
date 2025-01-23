@@ -204,6 +204,35 @@ app.get('/filtroLivro', (req, res) => {
         }
     });
 });
+
+app.get('/filtromontagem', (req, res) => {
+    const nomefiltro = req.query.name;
+    const livroId = req.query.peca;
+
+    let query = `SELECT montagem.*, livros.titulo AS livro_titulo FROM montagem 
+                 JOIN livros ON montagem.peca = livros.id 
+                 WHERE 1=1`;
+
+    const params = [];
+
+    if (nomefiltro) {
+        query += ' AND montagem.name LIKE ?';
+        params.push(`%${nomefiltro}%`);
+    }
+
+    if (livroId) {
+        query += ' AND montagem.livro_id = ?';
+        params.push(livroId);
+    }
+
+    conexao.query(query, params, (err, result) => {
+        if (err) {
+            return res.status(500).send(err); // Retorna um erro 500 em caso de falha
+        } else {
+            return res.send(result); // Retorna os resultados
+        }
+    })
+    })
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params
