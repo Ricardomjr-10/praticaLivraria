@@ -290,7 +290,7 @@ formFiltroLivro.addEventListener('submit', event => {
 
     const tituloFiltro = document.getElementById('buscarLivro').value
     const autorFiltro = document.getElementById('autorBuscar').value
-    console.log(tituloFiltro, autorFiltro)
+   
     if (tituloFiltro === '' && autorFiltro === '') {
         alert('Preencha pelo menos um campo para realizar a busca.');
         return;
@@ -306,7 +306,7 @@ formFiltroLivro.addEventListener('submit', event => {
         .then(data => {
             const livroResult = document.querySelector('.livroResult');
             livroResult.innerHTML = '';
-            console.log(data)
+           
             if (data.length === 0) {
                 livroResult.innerHTML = "<p>Nenhum livro encontrado.</p>";
                 return; // Impede que o loop continue sem dados
