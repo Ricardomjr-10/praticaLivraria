@@ -14,8 +14,16 @@ body {
     line-height: 1.6;
 }
 
+body {
+    background-image: url('./img/pexels-ivo-rainha-527110-1290141.jpg'); /* Replace with your image path */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-attachment: fixed; /* Keeps the image fixed while scrolling */
+    background-position: center; /* Centers the image */
+}
+
 header {
-    background: #4CAF50;
+    background: #4f74f0;
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -37,7 +45,7 @@ header p {
 }
 
 .btnList {
-    background: #4CAF50;
+    background: #4f74f0;
     color: white;
     padding: 10px 20px;
     margin: 0 10px;
@@ -47,7 +55,7 @@ header p {
 }
 
 .btnList:hover {
-    background: #45a049;
+    background: #325ef0;
 }
 
 .cadastro, .filtros, .relatorio {
@@ -61,7 +69,7 @@ header p {
 
 h2 {
     margin-bottom: 15px;
-    color: #4CAF50;
+    color: #4f74f0;
 }
 
 form {
@@ -83,11 +91,11 @@ input[type="text"], select {
 }
 
 input[type="text"]:focus {
-    border: 1px solid #4CAF50;
+    border: 1px solid #4f74f0;
 }
 
 button {
-    background: #4CAF50;
+    background: #4f74f0;
     color: white;
     padding: 10px;
     border: none;
@@ -95,10 +103,11 @@ button {
     cursor: pointer;
     transition: background 0.3s;
     width: 100%;
+    font-size: 1.5em;
 }
 
 button:hover {
-    background: #45a049;
+    background: #325ef0;
 }
 
 .forneResult, .livroResult, .montaResult, .relatorioResult {
