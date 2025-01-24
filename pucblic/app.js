@@ -269,7 +269,7 @@ formFiltroFornecedor.addEventListener('submit', event => {
         .then(data => {
             const fornecedorResult = document.querySelector('.forneResult');
             fornecedorResult.innerHTML = '';
-
+            fornecedorResult.style.display = 'block';
             if (data.length === 0) { // Mensagem caso não encontre nenhum fornecedor
                 fornecedorResult.innerHTML = "<p>Nenhum fornecedor encontrado.</p>";
                 return; // Impede que o loop continue sem dados
@@ -315,7 +315,7 @@ formFiltroLivro.addEventListener('submit', event => {
         .then(data => {
             const livroResult = document.querySelector('.livroResult');
             livroResult.innerHTML = '';
-           
+            livroResult.style.display = 'block';
             if (data.length === 0) {
                 livroResult.innerHTML = "<p>Nenhum livro encontrado.</p>";
                 return; // Impede que o loop continue sem dados
@@ -362,7 +362,7 @@ formFiltroMontagem.addEventListener('submit', event => {
         .then(data => {
             const montagemResult = document.querySelector('.montaResult');
             montagemResult.innerHTML = '';
-
+            montagemResult.style.display = 'block';
             if (data.length === 0) {
                 montagemResult.innerHTML = "<p>Nenhuma montagem encontrada.</p>";
                 return; // Impede que o loop continue sem dados
@@ -393,7 +393,7 @@ relatorioAutores.addEventListener('click', () => {
         .then(data => {
             const relatorioResult = document.querySelector('.relatorioResult');
             relatorioResult.innerHTML = '';
-
+            relatorioResult.style.display = 'block';
             if (data.length === 0) {
                 relatorioResult.innerHTML = "<p>Nenhum autor encontrado.</p>";
                 return; // Impede que o loop continue sem dados
