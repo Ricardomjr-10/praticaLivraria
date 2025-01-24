@@ -15,7 +15,7 @@ body {
 }
 
 body {
-    background-image: url('./img/pexels-ivo-rainha-527110-1290141.jpg'); /* Replace with your image path */
+    background-image: url('./img/pexels-alexdzot-3664343.jpg'); /* Replace with your image path */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-size: cover; /* Ensures the image covers the entire page */
     background-attachment: fixed; /* Keeps the image fixed while scrolling */
@@ -116,4 +116,8 @@ button:hover {
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+.btnRelat {
+    margin-bottom: 10px;
 }
