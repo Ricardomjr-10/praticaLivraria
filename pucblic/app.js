@@ -41,7 +41,7 @@ formAutor.addEventListener('submit', (event) => {
     })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('mensagens').innerHTML = data
+            // document.getElementById('mensagens').innerHTML = data
             showAlert(data)
             formAutor.reset()
         })
@@ -106,8 +106,8 @@ formLivro.addEventListener('submit', (event) => {
     })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('mensagens').innerHTML = data
-            console.log(data)
+            //document.getElementById('mensagens').innerHTML = data
+            showAlert(data)
             formLivro.reset()
         })
 })
@@ -127,8 +127,8 @@ formFornecedor.addEventListener('submit', event => {
     })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('mensagens').innerHTML = data
-            console.log(data)
+            //document.getElementById('mensagens').innerHTML = data
+            showAlert(data)
             validarCNPJ(cnpjInput.value)
             formFornecedor.reset()
         })
@@ -149,8 +149,8 @@ formPeca.addEventListener('submit', event => {
     })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('mensagens').innerHTML = data
-            console.log(data)
+            //document.getElementById('mensagens').innerHTML = data
+            showAlert(data)
             formPeca.reset()
         })
 })
@@ -170,8 +170,8 @@ formMontagem.addEventListener('submit', event => {
     })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('mensagens').innerHTML = data
-            console.log(data)
+            //document.getElementById('mensagens').innerHTML = data
+            showAlert(data)
             formMontagem.reset()
         })
 })
