@@ -286,6 +286,7 @@ formFiltroFornecedor.addEventListener('submit', event => {
                 `;
                 fornecedorResult.appendChild(fornecedorDiv)
             });
+            limpar(fornecedorResult)
         })
         .catch(error => { // Tratamento de erros mais robusto
             console.error("Erro ao buscar fornecedores:", error);
@@ -472,7 +473,11 @@ btnLimpar.addEventListener('click', () => {
 
 const limpar = (result) => {
     const btn = document.createElement('button')
+    btn.textContent = 'Limpar'
+
     btn.addEventListener('click', () => {
         result.style.display = 'none'
     })
+
+    result.appendChild(btn)
 }
