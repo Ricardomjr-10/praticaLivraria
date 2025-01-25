@@ -284,7 +284,7 @@ formFiltroFornecedor.addEventListener('submit', event => {
                     <p>CNPJ: ${fornecedor.cnpj}</p>
                     <hr>
                 `;
-                fornecedorResult.appendChild(fornecedorDiv);
+                fornecedorResult.appendChild(fornecedorDiv)
             });
         })
         .catch(error => { // Tratamento de erros mais robusto
@@ -465,3 +465,14 @@ relatorioLivros.addEventListener('click', () => {
 })
 
 const btnLimpar = document.getElementById('limpar')
+
+btnLimpar.addEventListener('click', () => {
+    document.querySelector('.relatorioResult').innerHTML = ''
+})
+
+const limpar = (result) => {
+    const btn = document.createElement('button')
+    btn.addEventListener('click', () => {
+        result.style.display = 'none'
+    })
+}
