@@ -463,3 +463,5 @@ relatorioLivros.addEventListener('click', () => {
             })
         })
 })
+
+const btnLimpar = document.getElementById('limpar')
