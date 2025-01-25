@@ -286,6 +286,7 @@ formFiltroFornecedor.addEventListener('submit', event => {
                 `;
                 fornecedorResult.appendChild(fornecedorDiv)
             });
+            formFiltroFornecedor.reset()
             limpar(fornecedorResult)
         })
         .catch(error => { // Tratamento de erros mais robusto
@@ -333,6 +334,7 @@ formFiltroLivro.addEventListener('submit', event => {
                 `;
                 livroResult.appendChild(livroDiv);
             });
+            formFiltroLivro.reset()
             limpar(livroResult)
         })
         .catch(error => {
