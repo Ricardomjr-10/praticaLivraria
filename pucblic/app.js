@@ -40,7 +40,7 @@ formAutor.addEventListener('submit', (event) => {
         .then(response => response.json())
         .then(data => {
             document.getElementById('mensagens').innerHTML = data
-            console.log(data)
+            showAlert()
             formAutor.reset()
         })
 })
@@ -494,14 +494,14 @@ const closeBtn = document.getElementById('closeBtn');
 function showAlert() {
     alertDiv.style.display = 'block';
     overlay.style.display = 'block';
-    document.body.classList.add('blur');
+    // document.body.classList.add('blur');
 }
 
 // Função para fechar o alerta
 function closeAlert() {
     alertDiv.style.display = 'none';
     overlay.style.display = 'none';
-    document.body.classList.remove('blur');
+    // document.body.classList.remove('blur');
 }
 
 // Fechar o alerta ao clicar fora da div
@@ -511,4 +511,4 @@ overlay.addEventListener('click', closeAlert);
 closeBtn.addEventListener('click', closeAlert);
 
 // Mostrar o alerta ao carregar a página
-window.onload = showAlert;
+// window.onload = showAlert;
