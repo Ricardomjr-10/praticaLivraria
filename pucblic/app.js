@@ -485,3 +485,30 @@ const limpar = (result) => {
 
     result.appendChild(btn)
 }
+
+const alertDiv = document.getElementById('alert');
+const overlay = document.getElementById('overlay');
+const closeBtn = document.getElementById('closeBtn');
+
+// Função para mostrar o alerta
+function showAlert() {
+    alertDiv.style.display = 'block';
+    overlay.style.display = 'block';
+    document.body.classList.add('blur');
+}
+
+// Função para fechar o alerta
+function closeAlert() {
+    alertDiv.style.display = 'none';
+    overlay.style.display = 'none';
+    document.body.classList.remove('blur');
+}
+
+// Fechar o alerta ao clicar fora da div
+overlay.addEventListener('click', closeAlert);
+
+// Fechar o alerta ao clicar no botão
+closeBtn.addEventListener('click', closeAlert);
+
+// Mostrar o alerta ao carregar a página
+window.onload = showAlert;
