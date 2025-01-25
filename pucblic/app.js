@@ -332,8 +332,8 @@ formFiltroLivro.addEventListener('submit', event => {
                   <hr>
                 `;
                 livroResult.appendChild(livroDiv);
-                
             });
+            limpar(livroResult)
         })
         .catch(error => {
             console.error("Erro ao buscar livros:", error);
@@ -379,6 +379,8 @@ formFiltroMontagem.addEventListener('submit', event => {
                 `;
                 montagemResult.appendChild(montagemDiv);
             });
+            formFiltroMontagem.reset()
+            limpar(montagemResult)
         })
         .catch(error => {
             console.error("Erro ao buscar montagens:", error);
