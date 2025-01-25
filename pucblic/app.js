@@ -31,6 +31,11 @@ formAutor.addEventListener('submit', (event) => {
 
     const formData = new FormData(formAutor);
     const data = Object.fromEntries(formData);
+    
+    if (validarCPF(data.cpfAutor) !== cpfInput.value) {
+        validarCPF(cpfInput.value)
+        return
+    }
 
     fetch('/cadAutor', {
         method: 'POST',
@@ -197,14 +202,16 @@ contaInput.addEventListener('input', () => {
 function validarCPF(cpf) {
     const regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
     const isValid = regex.test(cpf);
-    document.getElementById('mensagens').innerHTML = isValid ? 'CPF válido' : 'CPF inválido';
+    const msg = isValid ? 'CPF válido' : 'CPF inválido'
+    //document.getElementById('mensagens').innerHTML = isValid ? 'CPF válido' : 'CPF inválido';
     //se invalido, cor da letra vermelha
     cpfInput.style.color = isValid ? 'green' : 'red';
+   showAlert(msg)
 }
 
-cpfInput.addEventListener('input', () => {
-    validarCPF(cpfInput.value)
-})
+// cpfInput.addEventListener('input', () => {
+//     validarCPF(cpfInput.value)
+// })
 
 //validar cnpj em fornecedor
 function validarCNPJ(cnpj) {
