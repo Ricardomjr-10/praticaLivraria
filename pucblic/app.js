@@ -1,4 +1,3 @@
-
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
 const formFornecedor = document.getElementById('formFornecedor')
@@ -23,6 +22,9 @@ const formFiltroMontagem = document.getElementById('montagemPorNome')
 const relatorioAutores = document.getElementById('btnAutores')
 const relatorioFornecedores = document.getElementById('btnFornecedores')
 const relatorioLivros = document.getElementById('btnLivroMontagem')
+const alertDiv = document.getElementById('alert');
+const overlay = document.getElementById('overlay');
+const closeBtn = document.getElementById('closeBtn');
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -40,7 +42,7 @@ formAutor.addEventListener('submit', (event) => {
         .then(response => response.json())
         .then(data => {
             document.getElementById('mensagens').innerHTML = data
-            showAlert()
+            showAlert(data)
             formAutor.reset()
         })
 })
@@ -486,14 +488,13 @@ const limpar = (result) => {
     result.appendChild(btn)
 }
 
-const alertDiv = document.getElementById('alert');
-const overlay = document.getElementById('overlay');
-const closeBtn = document.getElementById('closeBtn');
+
 
 // Função para mostrar o alerta
-function showAlert() {
+function showAlert(dados) {
     alertDiv.style.display = 'block';
     overlay.style.display = 'block';
+    document.querySelector('p').innerHTML = dados
     // document.body.classList.add('blur');
 }
 
