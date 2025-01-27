@@ -32,8 +32,8 @@ formAutor.addEventListener('submit', (event) => {
     const formData = new FormData(formAutor);
     const data = Object.fromEntries(formData);
     
-    if (validarCPF(data.cpfAutor) !== cpfInput.value) {
-        validarCPF(cpfInput.value)
+    if (!validarCPF(data.cpfAutor)) {
+        validarCPF()
         return
     }
 
