@@ -1,3 +1,5 @@
+const { cpf } = require("cpf-cnpj-validator")
+
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
 const formFornecedor = document.getElementById('formFornecedor')
@@ -32,10 +34,10 @@ formAutor.addEventListener('submit', (event) => {
     const formData = new FormData(formAutor);
     const data = Object.fromEntries(formData);
     
-    if (!validarCPF(data.cpfAutor)) {
-        validarCPF()
+    if (validarCPF(cpfInput.value) == 'CPF inválido') {
+        alert('CPF inválido')
         return
-    }
+    } 
 
     fetch('/cadAutor', {
         method: 'POST',
@@ -206,7 +208,6 @@ function validarCPF(cpf) {
     //document.getElementById('mensagens').innerHTML = isValid ? 'CPF válido' : 'CPF inválido';
     //se invalido, cor da letra vermelha
     cpfInput.style.color = isValid ? 'green' : 'red';
-   showAlert(msg)
 }
 
 // cpfInput.addEventListener('input', () => {
