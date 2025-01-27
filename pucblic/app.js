@@ -34,8 +34,10 @@ formAutor.addEventListener('submit', (event) => {
     const formData = new FormData(formAutor);
     const data = Object.fromEntries(formData);
     
-    if (validarCPF(cpfInput.value) == 'CPF inválido') {
-        alert('CPF inválido')
+    if (validarCPF(cpfInput.value)) {
+        data.cpf = cpfInput.value
+    } else {
+        alert('CPF inválido')
         return
     } 
 
