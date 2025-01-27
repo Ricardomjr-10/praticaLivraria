@@ -1,5 +1,7 @@
 const { cpf } = require("cpf-cnpj-validator")
 
+
+
 const formAutor = document.getElementById('formAutor')
 const formLivro = document.getElementById('formLivro')
 const formFornecedor = document.getElementById('formFornecedor')
@@ -34,12 +36,7 @@ formAutor.addEventListener('submit', (event) => {
     const formData = new FormData(formAutor);
     const data = Object.fromEntries(formData);
     
-    if (validarCPF(cpfInput.value)) {
-        data.cpf = cpfInput.value
-    } else {
-        alert('CPF inválido')
-        return
-    } 
+  console.log(validarCPF(cpfInput.value), data.cpfAutor)
 
     fetch('/cadAutor', {
         method: 'POST',
