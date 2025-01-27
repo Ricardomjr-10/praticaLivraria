@@ -102,6 +102,11 @@ formLivro.addEventListener('submit', (event) => {
     const formData = new FormData(formLivro);
     const data = Object.fromEntries(formData);
 
+    if (validarISBN(isbnInput.value) === 'ISBN inválido') {
+        showAlert('ISBN inválido');
+        return;
+    }
+
     fetch('/cadLivro', {
         method: 'POST',
         headers: {
@@ -122,6 +127,11 @@ formFornecedor.addEventListener('submit', event => {
 
     const formData = new FormData(formFornecedor)
     const data = Object.fromEntries(formData)
+
+    if (validarCNPJ(cnpjInput.value) === 'CNPJ inválido') {
+        showAlert('CNPJ inválido');
+        return;
+    }
 
     fetch('/cadFornecedor', {
         method: 'POST',
@@ -217,27 +227,31 @@ function validarCPF(cpf) {
 function validarCNPJ(cnpj) {
     const regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
     const isValid = regex.test(cnpj);
-    document.getElementById('mensagens').innerHTML = isValid ? 'CNPJ válido' : 'CNPJ inválido';
+    const msg = isValid ? 'CNPJ válido' : 'CNPJ inválido'
+    // document.getElementById('mensagens').innerHTML = isValid ? 'CNPJ válido' : 'CNPJ inválido';
     //se invalido, cor da letra vermelha
-    cnpjInput.style.color = isValid ? 'green' : 'red';
+    // cnpjInput.style.color = isValid ? 'green' : 'red';
+    return msg
 }
 
-cnpjInput.addEventListener('input', () => {
-    validarCNPJ(cnpjInput.value)
-})
+// cnpjInput.addEventListener('input', () => {
+//     validarCNPJ(cnpjInput.value)
+// })
 
 //validar isbn em livro
 function validarISBN(isbn) {
     const regex = /^\d{3}-\d{3}-\d{3}-\d{2}-\d{1}$/;
     const isValid = regex.test(isbn);
-    document.getElementById('mensagens').innerHTML = isValid ? 'ISBN válido' : 'ISBN inválido';
+    const msg = isValid ? 'ISBN válido' : 'ISBN inválido'
+    // document.getElementById('mensagens').innerHTML = isValid ? 'ISBN válido' : 'ISBN inválido';
     //se invalido, cor da letra vermelha
-    isbnInput.style.color = isValid ? 'green' : 'red';
+    // isbnInput.style.color = isValid ? 'green' : 'red';
+    return msg
 }
 
-isbnInput.addEventListener('input', () => {
-    validarISBN(isbnInput.value)
-})
+// isbnInput.addEventListener('input', () => {
+//     validarISBN(isbnInput.value)
+// })
 
 btnCadastro.addEventListener('click', () => {
     divCadastro.style.display = 'block'
