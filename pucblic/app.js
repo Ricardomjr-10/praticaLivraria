@@ -16,6 +16,7 @@ const btnRelatorios = document.getElementById('btnRelatorios')
 const divCadastro = document.querySelector('.cadastro')
 const divFiltros = document.querySelector('.filtros')
 const divRelatorios = document.querySelector('.relatorio')
+const divEditar = document.querySelector('.editar')
 const btnEditar = document.getElementById('btnEditar')
 const formFiltroFornecedor = document.getElementById('fornecedorPorNome')
 const formFiltroLivro = document.getElementById('livroPorTitulo')
@@ -258,28 +259,28 @@ btnCadastro.addEventListener('click', () => {
     divCadastro.style.display = 'block'
     divFiltros.style.display = 'none'
     divRelatorios.style.display = 'none'
-    btnEditar.style.display = 'none'
+    divEditar.style.display = 'none'
 })
 
 btnFiltros.addEventListener('click', () => {
     divCadastro.style.display = 'none'
     divFiltros.style.display = 'block'
     divRelatorios.style.display = 'none'
-    btnEditar.style.display = 'none'
+    divEditar.style.display = 'none'
 })
 
 btnRelatorios.addEventListener('click', () => {
     divCadastro.style.display = 'none'
     divFiltros.style.display = 'none'
     divRelatorios.style.display = 'block'
-    btnEditar.style.display = 'none'
+    divEditar.style.display = 'none'
 })
 
 btnEditar.addEventListener('click', () => {
     divCadastro.style.display = 'none'
     divFiltros.style.display = 'none'
     divRelatorios.style.display = 'none'
-    btnEditar.style.display = 'block'
+    divEditar.style.display = 'block'
 })
 
 formFiltroFornecedor.addEventListener('submit', event => {
