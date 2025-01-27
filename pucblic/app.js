@@ -33,7 +33,7 @@ formAutor.addEventListener('submit', (event) => {
     const data = Object.fromEntries(formData);
     
    if (validarCPF(cpfInput.value) === 'CPF inválido') {
-        alert('CPF inválido');
+        showAlert('CPF inválido');
         return;
     }
 
@@ -206,7 +206,7 @@ function validarCPF(cpf) {
     //document.getElementById('mensagens').innerHTML = isValid ? 'CPF válido' : 'CPF inválido';
     //se invalido, cor da letra vermelha
     //cpfInput.style.color = isValid ? 'green' : 'red';
-    return showAlert(msg)
+    return msg
 }
 
 // cpfInput.addEventListener('input', () => {
