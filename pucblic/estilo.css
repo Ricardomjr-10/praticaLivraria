@@ -156,7 +156,14 @@ button:hover {
     display: inline-flex;
     width: 25%;
     justify-content: center;
-    align-items: right;
     margin-right: 10px;
     margin-left: 10px;
+}
+
+.editarBtn {
+    background: green;
+}
+
+.excluirBtn {
+    background: red;
 }
