@@ -161,9 +161,24 @@ button:hover {
 }
 
 .editarBtn {
-    background: green;
+    background: rgb(88, 248, 88);
 }
 
+
+.editarBtn:hover {
+    background: rgb(67, 241, 67);
+}
 .excluirBtn {
-    background: red;
+    background: rgb(255, 65, 65);
+}
+
+.excluirBtn:hover {
+    background: rgb(245, 44, 44);
+}
+
+.botaoEd {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -20px;
+    
 }

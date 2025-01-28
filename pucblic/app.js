@@ -571,8 +571,10 @@ editarAutores.addEventListener('click', () => {
                 autorDiv.innerHTML = `
                     <span>Nome: ${autor.name}</span>
                     <span>CPF: ${autor.cpf}</span> 
+                    <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
                     <button class="excluirBtn btnEd">Excluir</button>
+                    </div>
                     <hr>
                 `;
                 editarResult.appendChild(autorDiv);
