@@ -555,7 +555,7 @@ const editarMontagem = document.getElementById('EditarMontagem')
 
 editarAutores.addEventListener('click', () => {
     //mostar todos os autores e com o botao para editar e outro para excluir
-    fetch('/autores')
+    fetch('/allAutores')
         .then(response => response.json())
         .then(data => {
             const editarResult = document.querySelector('.editarResult');
@@ -569,10 +569,10 @@ editarAutores.addEventListener('click', () => {
             data.forEach(autor => { 
                 const autorDiv = document.createElement('div');
                 autorDiv.innerHTML = `
-                    <p>Nome: ${autor.name}</p>
-                    <p>CPF: ${autor.cpf}</p>
-                    <button class="editar">Editar</button>
-                    <button class="excluir">Excluir</button>
+                    <span>Nome: ${autor.name}</span>
+                    <span>CPF: ${autor.cpf}</span> 
+                    <button class="editar btnEd">Editar</button>
+                    <button class="excluir btnEd">Excluir</button>
                     <hr>
                 `;
                 editarResult.appendChild(autorDiv);
