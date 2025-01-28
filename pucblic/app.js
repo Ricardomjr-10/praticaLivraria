@@ -581,3 +581,32 @@ editarAutores.addEventListener('click', () => {
             })
         })  
 })
+
+editarFornecedores.addEventListener('click', () => {
+    //mostar todos os fornecedores e com o botao para editar e outro para excluir
+    fetch('/allFornecedores')
+        .then(response => response.json())
+        .then(data => {
+            const editarResult = document.querySelector('.editarResult');
+            editarResult.innerHTML = '';
+            editarResult.style.display = 'block';
+            if (data.length === 0) {
+                editarResult.innerHTML = "<p>Nenhum fornecedor encontrado.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(fornecedor => {
+                const fornecedorDiv = document.createElement('div');
+                fornecedorDiv.innerHTML = `
+                    <p>Nome: ${fornecedor.name}</p>
+                    <span>CNPJ: ${fornecedor.cnpj}</span> 
+                    <div class="botaoEd">
+                    <button class="editarBtn btnEd">Editar</button>
+                    <button class="excluirBtn btnEd">Excluir</button>
+                    </div>
+                    <hr>
+                `;
+                editarResult.appendChild(fornecedorDiv);
+            })
+        })
+})
