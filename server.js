@@ -54,6 +54,16 @@ app.get('/allPecas', (req, res) => {
     })
 })
 
+app.get('/allMontagem', (req, res) => {
+    conexao.query('SELECT * FROM montagem', (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 app.post('/cadAutor', (req, res) => {
     const { nomeAutor, cpfAutor } = req.body
     const sql = `INSERT INTO autores (name, cpf) VALUES ('${nomeAutor}', '${cpfAutor}')`
