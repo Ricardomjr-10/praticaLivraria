@@ -569,7 +569,7 @@ editarAutores.addEventListener('click', () => {
             data.forEach(autor => { 
                 const autorDiv = document.createElement('div');
                 autorDiv.innerHTML = `
-                    <span>Nome: ${autor.name}</span>
+                    <p>Nome: ${autor.name}</p>
                     <span>CPF: ${autor.cpf}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
