@@ -290,7 +290,8 @@ formFiltroFornecedor.addEventListener('submit', event => {
     const nomeConta = document.getElementById('numeroConta').value;
 
     if (nomeFiltro === '' && nomeConta === '') {
-        alert('Preencha pelo menos um campo para realizar a busca.');
+        showAlert('Preencha pelo menos um campo para realizar a busca.');
+        //alert('Preencha pelo menos um campo para realizar a busca.');
         return;
     }
 
@@ -338,7 +339,8 @@ formFiltroLivro.addEventListener('submit', event => {
     const autorFiltro = document.getElementById('autorBuscar').value
    
     if (tituloFiltro === '' && autorFiltro === '') {
-        alert('Preencha pelo menos um campo para realizar a busca.');
+        showAlert('Preencha pelo menos um campo para realizar a busca.');
+        //alert('Preencha pelo menos um campo para realizar a busca.');
         return;
     }
 
@@ -386,7 +388,8 @@ formFiltroMontagem.addEventListener('submit', event => {
     const pecaFiltro = document.getElementById('buscarPecasMontagem').value
 
     if (nomeFiltro === '' && pecaFiltro === '') {
-        alert('Preencha pelo menos um campo para realizar a busca.');
+        showAlert('Preencha pelo menos um campo para realizar a busca.');
+        //alert('Preencha pelo menos um campo para realizar a busca.');
         return;
     }
 
