@@ -546,3 +546,36 @@ closeBtn.addEventListener('click', closeAlert);
 
 // Mostrar o alerta ao carregar a página
 // window.onload = showAlert;
+
+const editarAutores = document.getElementById('EditarAutores')
+const editarFornecedores = document.getElementById('EditarFornecedores')
+const editarLivros = document.getElementById('EditarLivros')
+const editarPecas = document.getElementById('EditarPecas')
+const editarMontagem = document.getElementById('EditarMontagem')
+
+editarAutores.addEventListener('click', () => {
+    //mostar todos os autores e com o botao para editar e outro para excluir
+    fetch('/autores')
+        .then(response => response.json())
+        .then(data => {
+            const editarResult = document.querySelector('.editarResult');
+            editarResult.innerHTML = '';
+            editarResult.style.display = 'block';
+            if (data.length === 0) {
+                editarResult.innerHTML = "<p>Nenhum autor encontrado.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(autor => { 
+                const autorDiv = document.createElement('div');
+                autorDiv.innerHTML = `
+                    <p>Nome: ${autor.name}</p>
+                    <p>CPF: ${autor.cpf}</p>
+                    <button class="editar">Editar</button>
+                    <button class="excluir">Excluir</button>
+                    <hr>
+                `;
+                editarResult.appendChild(autorDiv);
+            })
+        })  
+})

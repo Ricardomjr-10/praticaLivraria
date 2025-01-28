@@ -58,7 +58,7 @@ header p {
     background: #325ef0;
 }
 
-.cadastro, .filtros, .relatorio {
+.cadastro, .filtros, .relatorio, .editar {
     background: rgba(255, 254, 254, 0.9);
     margin: 20px auto;
     padding: 20px;
