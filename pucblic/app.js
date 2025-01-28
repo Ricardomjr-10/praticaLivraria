@@ -610,3 +610,90 @@ editarFornecedores.addEventListener('click', () => {
             })
         })
 })
+
+editarLivros.addEventListener('click', () => {
+    //mostar todos os livros e com o botao para editar e outro para excluir
+    fetch('/allLivros')
+        .then(response => response.json())
+        .then(data => {
+            const editarResult = document.querySelector('.editarResult');
+            editarResult.innerHTML = '';
+            editarResult.style.display = 'block';
+            if (data.length === 0) {
+                editarResult.innerHTML = "<p>Nenhum livro encontrado.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(livro => {
+                const livroDiv = document.createElement('div');
+                livroDiv.innerHTML = `
+                    <p>Título: ${livro.title}</p>
+                    <span>ISBN: ${livro.isbn}</span> 
+                    <div class="botaoEd">
+                    <button class="editarBtn btnEd">Editar</button>
+                    <button class="excluirBtn btnEd">Excluir</button>
+                    </div>
+                    <hr>
+                `;
+                editarResult.appendChild(livroDiv);
+            })
+        })
+})
+
+editarPecas.addEventListener('click', () => {
+    //mostar todas as pecas e com o botao para editar e outro para excluir
+    fetch('/allPecas')
+        .then(response => response.json())
+        .then(data => {
+            const editarResult = document.querySelector('.editarResult');
+            editarResult.innerHTML = '';
+            editarResult.style.display = 'block';
+            if (data.length === 0) {
+                editarResult.innerHTML = "<p>Nenhuma peça encontrada.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(peca => {
+                const pecaDiv = document.createElement('div');
+                pecaDiv.innerHTML = `
+                    <p>Nome: ${peca.name}</p>
+                    <span>Quantidade: ${peca.quantity}</span> 
+                    <div class="botaoEd">
+                    <button class="editarBtn btnEd">Editar</button>
+                    <button class="excluirBtn btnEd">Excluir</button>
+                    </div>
+                    <hr>
+                `;
+                editarResult.appendChild(pecaDiv);
+            })
+        })
+})
+
+editarMontagem.addEventListener('click', () => {
+    //mostar todas as montagens e com o botao para editar e outro para excluir
+    fetch('/allMontagem')
+        .then(response => response.json())
+        .then(data => {
+            const editarResult = document.querySelector('.editarResult');
+            editarResult.innerHTML = '';
+            editarResult.style.display = 'block';
+            if (data.length === 0) {
+                editarResult.innerHTML = "<p>Nenhuma montagem encontrada.</p>";
+                return; // Impede que o loop continue sem dados
+            }
+
+            data.forEach(montagem => {
+                const montagemDiv = document.createElement('div');
+                montagemDiv.innerHTML = `
+                    <p>Nome: ${montagem.name}</p>
+                    <span>Livro: ${montagem.title}</span> 
+                    <div class="botaoEd">
+                    <button class="editarBtn btnEd">Editar</button>
+                    <button class="excluirBtn btnEd">Excluir</button>
+                    </div>
+                    <hr>
+                `;
+                editarResult.appendChild(montagemDiv);
+            })
+        })
+})
