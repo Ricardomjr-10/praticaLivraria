@@ -630,7 +630,7 @@ editarLivros.addEventListener('click', () => {
             data.forEach(livro => {
                 const livroDiv = document.createElement('div');
                 livroDiv.innerHTML = `
-                    <p>Título: ${livro.title}</p>
+                    <p>Título: ${livro.titulo}</p>
                     <span>ISBN: ${livro.isbn}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
@@ -660,7 +660,7 @@ editarPecas.addEventListener('click', () => {
                 const pecaDiv = document.createElement('div');
                 pecaDiv.innerHTML = `
                     <p>Nome: ${peca.name}</p>
-                    <span>Quantidade: ${peca.quantity}</span> 
+                    <span>Valor: ${peca.valor}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
                     <button class="excluirBtn btnEd">Excluir</button>
@@ -689,7 +689,7 @@ editarMontagem.addEventListener('click', () => {
                 const montagemDiv = document.createElement('div');
                 montagemDiv.innerHTML = `
                     <p>Nome: ${montagem.name}</p>
-                    <span>Livro: ${montagem.title}</span> 
+                    <span>Livro: ${montagem.livro_id}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
                     <button class="excluirBtn btnEd">Excluir</button>
