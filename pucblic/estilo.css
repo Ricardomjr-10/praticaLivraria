@@ -136,7 +136,12 @@ button:hover {
 }
 
 .editar {
-    max-width: 910px;
+    max-width: 905px;
+}
+
+.editar button {
+    font-size: calc(130% - 1px);
+    width: 140px;
 }
 
 .overlay {
