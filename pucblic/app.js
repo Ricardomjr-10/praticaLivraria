@@ -706,3 +706,21 @@ const btnLimparEditar = document.getElementById('EditarLimpar');
 btnLimparEditar.addEventListener('click', () => {
     document.querySelector('.editarResult').innerHTML = ''
 })
+
+//funcao para deletar dados do banco de dados
+
+const excluir = () => {
+    fetch('/deletar', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Erro ao deletar os dados:', error);
+    })
+}
