@@ -124,9 +124,19 @@ button:hover {
 }
 
 .btnRelat {
+  
+    /* margin-right: 60px; */
     margin-bottom: 10px;
-    width: 30%;
-    font-size: calc(100% - 1px);
+    width: 170px;
+    font-size: calc(160% - 1px);
+}
+
+.relatorio{
+    max-width: 735px;
+}
+
+.editar {
+    max-width: 910px;
 }
 
 .overlay {
@@ -156,7 +166,7 @@ button:hover {
 
 .btnEd {
     display: inline-flex;
-    width: 25%;
+    width: 15%;
     justify-content: center;
     margin-right: 10px;
     margin-left: 10px;
