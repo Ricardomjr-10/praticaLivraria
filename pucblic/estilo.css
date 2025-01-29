@@ -125,9 +125,9 @@ button:hover {
 
 .btnRelat {
     margin-bottom: 10px;
-    width: 40%;
+    width: 30%;
+    font-size: calc(100% - 1px);
 }
-
 
 .overlay {
     position: fixed;
