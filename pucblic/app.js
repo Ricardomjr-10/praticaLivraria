@@ -700,3 +700,9 @@ editarMontagem.addEventListener('click', () => {
             })
         })
 })
+
+const btnLimparEditar = document.getElementById('EditarLimpar');
+
+btnLimparEditar.addEventListener('click', () => {
+    document.querySelector('.editarResult').innerHTML = ''
+})
