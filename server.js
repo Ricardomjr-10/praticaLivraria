@@ -277,6 +277,26 @@ app.get('/filtroMontagem', (req, res) => {
        })
    })
 
+   const deletar = (tabela, nomeTabela) => {
+       app.delete('/deletar', (req, res) => {
+        const { id } = req.body
+        const sql = `DELETE FROM ${tabela} WHERE id = ${id}`
+        conexao.query(sql, (err, result) => {
+            if (err) {
+                res.send(err)
+            } else {
+                res.json(`${nomeTabela} deletado com sucesso!`)
+            }
+        })
+    })
+   }
+
+   deletar('autores', 'Autor')
+   deletar('livros', 'Livro')
+   deletar('fornecedores', 'Fornecedor')
+   deletar('pecas', 'Peca')
+   deletar('montagem', 'Montagem')
+
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params
