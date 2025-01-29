@@ -576,7 +576,7 @@ editarAutores.addEventListener('click', () => {
                     <span>CPF: ${autor.cpf}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
-                    <button class="excluirBtn btnEd">Excluir</button>
+                    <button class="excluirBtn btnEd" onclick="excluir()">Excluir</button>
                     </div>
                     <hr>
                 `;
