@@ -715,7 +715,6 @@ editarMontagem.addEventListener('click', () => {
                         alert(`Montagem excluída com sucesso.`);
                             // Atualiza a lista de montagens após a exclusão
                             editarMontagem.click();
-                            console.log(editarMontagem.click())
                         } else {
                             alert(`Erro ao excluir montagem.`);
                             console.log(data)
