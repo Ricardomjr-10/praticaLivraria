@@ -279,13 +279,13 @@ app.get('/filtroMontagem', (req, res) => {
 
 
        app.delete(`/deleteMontagem/:id`, (req, res) => {
-        const { id } = req.query
+        const { id } = req.params
         const sql = `DELETE FROM montagem WHERE id = ${id}`
         conexao.query(sql, (err, result) => {
             if (err) {
-                res.json(err)
+                res.send(err)
             } else {
-                res.json(`${nomeTabela} deletado com sucesso!`)
+                res.json(`Montagem deletado com sucesso!`)
             }
         })
     })
