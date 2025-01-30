@@ -704,7 +704,7 @@ editarMontagem.addEventListener('click', () => {
             const excluirBtn = document.querySelector('.excluirBtn');
             excluirBtn.addEventListener('click', () => {
                 const id = excluirBtn.dataset.id;
-                if (showAlert(confirm(`Tem certeza que deseja excluir esta montagem?`))) {
+                if (confirm(`Tem certeza que deseja excluir esta montagem?`)) {
                     fetch(`/deleteMontagem/${id}`, {
                         method: 'DELETE'
                     })
