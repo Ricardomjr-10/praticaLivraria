@@ -576,7 +576,7 @@ editarAutores.addEventListener('click', () => {
                     <span>CPF: ${autor.cpf}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
-                    <button class="excluirBtn btnEd" onclick="excluir()">Excluir</button>
+                    <button class="excluirBtn btnEd">Excluir</button>
                     </div>
                     <hr>
                 `;
@@ -697,6 +697,7 @@ editarMontagem.addEventListener('click', () => {
                     <hr>
                 `;
                 editarResult.appendChild(montagemDiv);
+                excluir('deleteMontagem', 'montagem');
             })
         })
 })
@@ -709,18 +710,24 @@ btnLimparEditar.addEventListener('click', () => {
 
 //funcao para deletar dados do banco de dados
 
-const excluir = () => {
-    fetch('/deletar', {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Erro ao deletar os dados:', error);
-    })
+const excluir = (rota, dado) => {
+    const excluirBtn = montagemDiv.querySelector('.excluirBtn');
+                excluirBtn.addEventListener('click', () => {
+                    const id = excluirBtn.dataset.id;
+                    if (confirm(`Tem certeza que deseja excluir este ${dado}?`)) {
+                        fetch(`/${rota}/${id}`, {
+                            method: 'DELETE'
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                            alert(`${dado} excluída com sucesso.`);
+                                // Atualiza a lista de montagens após a exclusão
+                                ditarMontagem.click();
+                            } else {
+                                alert(`Erro ao excluir ${dado}.`);
+                            }
+                        });
+                    }
+                });
 }
