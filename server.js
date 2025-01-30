@@ -283,7 +283,7 @@ app.get('/filtroMontagem', (req, res) => {
         const sql = `DELETE FROM ${tabela} WHERE id = ${id}`
         conexao.query(sql, (err, result) => {
             if (err) {
-                res.send(err)
+                res.json(err)
             } else {
                 res.json(`${nomeTabela} deletado com sucesso!`)
             }
@@ -295,7 +295,7 @@ app.get('/filtroMontagem', (req, res) => {
    deletar('livros', 'Livro')
    deletar('fornecedores', 'Fornecedor')
    deletar('pecas', 'Peca')
-   deletar('deletarMontagem', 'montagem', 'Montagem')
+   deletar('deleteMontagem', 'montagem', 'Montagem')
 
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {

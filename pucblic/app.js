@@ -692,7 +692,7 @@ editarMontagem.addEventListener('click', () => {
                     <span>Livro: ${montagem.livro_id}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
-                    <button class="excluirBtn btnEd">Excluir</button>
+                    <button class="excluirBtn btnEd" data-id="${montagem.id}">Excluir</button>
                     </div>
                     <hr>
                 `;
@@ -711,7 +711,7 @@ btnLimparEditar.addEventListener('click', () => {
 //funcao para deletar dados do banco de dados
 
 const excluir = (rota, dado) => {
-    const excluirBtn = montagemDiv.querySelector('.excluirBtn');
+    const excluirBtn = document.querySelector('.excluirBtn');
                 excluirBtn.addEventListener('click', () => {
                     const id = excluirBtn.dataset.id;
                     if (confirm(`Tem certeza que deseja excluir este ${dado}?`)) {
@@ -723,7 +723,7 @@ const excluir = (rota, dado) => {
                             if (data.success) {
                             alert(`${dado} excluída com sucesso.`);
                                 // Atualiza a lista de montagens após a exclusão
-                                ditarMontagem.click();
+                                editarMontagem.click();
                             } else {
                                 alert(`Erro ao excluir ${dado}.`);
                             }
