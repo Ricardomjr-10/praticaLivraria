@@ -701,10 +701,7 @@ editarMontagem.addEventListener('click', () => {
                
                 
             })
-      
-        })
-
-              const excluirBtn = document.querySelector('.excluirBtn');
+            const excluirBtn = document.querySelector('.excluirBtn');
             excluirBtn.addEventListener('click', () => {
                 const id = excluirBtn.dataset.id;
                 if (confirm(`Tem certeza que deseja excluir esta montagem?`)) {
@@ -713,11 +710,12 @@ editarMontagem.addEventListener('click', () => {
                     })
                     .then(response => response.json())
                     .then(data => {
-                        if (data.success) {
+                        if (data) {
                             console.log(data)
                         alert(`Montagem excluída com sucesso.`);
                             // Atualiza a lista de montagens após a exclusão
-                            //editarMontagem.click();
+                            editarMontagem.click();
+                            console.log(editarMontagem.click())
                         } else {
                             alert(`Erro ao excluir montagem.`);
                             console.log(data)
@@ -725,6 +723,7 @@ editarMontagem.addEventListener('click', () => {
                     });
                 }
             });
+        })
 })
 
 const btnLimparEditar = document.getElementById('EditarLimpar');
