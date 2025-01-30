@@ -721,11 +721,13 @@ const excluir = (rota, dado) => {
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
+                                console.log(data)
                             alert(`${dado} excluída com sucesso.`);
                                 // Atualiza a lista de montagens após a exclusão
                                 editarMontagem.click();
                             } else {
                                 alert(`Erro ao excluir ${dado}.`);
+                                console.log(data)
                             }
                         });
                     }
