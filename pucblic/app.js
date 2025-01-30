@@ -712,7 +712,7 @@ editarMontagem.addEventListener('click', () => {
                     .then(data => {
                         if (data) {
                             console.log(data)
-                        alert(`Montagem excluída com sucesso.`);
+                        showAlert(`Montagem excluída com sucesso.`);
                             // Atualiza a lista de montagens após a exclusão
                             editarMontagem.click();
                         } else {
