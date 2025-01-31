@@ -720,26 +720,30 @@ btnLimparEditar.addEventListener('click', () => {
 //funcao para deletar dados do banco de dados
 
 
-const excluirDados = (rota, nome, data) => {
-    const excluirBtn = document.querySelector(`.excluirBtn`);
-    excluirBtn.addEventListener('click', () => {
-        const id = excluirBtn.dataset.id;
-        if (confirm(`Tem certeza que deseja excluir esta ${nome}?`)) {
-            fetch(`/${rota}/${id}`, {
-                method: 'DELETE'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    console.log(data)
-                showAlert(`${nome} excluída com sucesso.`);
-                    // Atualiza a lista de montagens após a exclusão
-                    editarMontagem.click();
-                } else {
-                    alert(`Erro ao excluir ${nome}.`);
-                    console.log(data)
-                }
-            });
-        }
-    });
+const excluirDados = (rota, nome) => {
+    const excluirBtns = document.querySelectorAll(`.excluirBtn`);
+
+    excluirBtns.forEach(excluirBtn => {
+
+        excluirBtn.addEventListener('click', () => {
+            const id = excluirBtn.dataset.id;
+            if (confirm(`Tem certeza que deseja excluir esta ${nome}?`)) {
+                fetch(`/${rota}/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        console.log(data)
+                    showAlert(`${nome} excluída com sucesso.`);
+                        // Atualiza a lista de montagens após a exclusão
+                        editarMontagem.click();
+                    } else {
+                        alert(`Erro ao excluir ${nome}.`);
+                        console.log(data)
+                    }
+                });
+            }
+        });
+    })
 }
