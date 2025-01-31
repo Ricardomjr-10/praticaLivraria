@@ -291,7 +291,12 @@ const deletar = (rota, nome) => {
     })
 }
    
+deletar('deleteAutores', 'autores')
+deletar('deleteFornecedores', 'fornecedores')
+deletar('deleteLivros', 'livros')
+deletar('deletePecas', 'pecas')
 deletar('deleteMontagem', 'montagem')
+
 
 
 // //rota para validar cpf

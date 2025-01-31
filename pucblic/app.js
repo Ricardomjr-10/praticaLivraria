@@ -663,12 +663,14 @@ editarPecas.addEventListener('click', () => {
                     <span>Valor: ${peca.valor}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
-                    <button class="excluirBtn btnEd">Excluir</button>
+                    <button class="excluirBtn btnEd" data-id="${peca.id}">Excluir</button>
                     </div>
                     <hr>
                 `;
                 editarResult.appendChild(pecaDiv);
             })
+
+            excluirDados('deletePecas', 'peca')
         })
 })
 
