@@ -701,27 +701,8 @@ editarMontagem.addEventListener('click', () => {
                
                 
             })
-            const excluirBtn = document.querySelector('.excluirBtn');
-            excluirBtn.addEventListener('click', () => {
-                const id = excluirBtn.dataset.id;
-                if (confirm(`Tem certeza que deseja excluir esta montagem?`)) {
-                    fetch(`/deleteMontagem/${id}`, {
-                        method: 'DELETE'
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data) {
-                            console.log(data)
-                        showAlert(`Montagem excluída com sucesso.`);
-                            // Atualiza a lista de montagens após a exclusão
-                            editarMontagem.click();
-                        } else {
-                            alert(`Erro ao excluir montagem.`);
-                            console.log(data)
-                        }
-                    });
-                }
-            });
+            excluirDados('deleteMontagem', 'montagem')
+           
         })
 })
 
@@ -734,25 +715,26 @@ btnLimparEditar.addEventListener('click', () => {
 //funcao para deletar dados do banco de dados
 
 
-    // const excluirBtn = document.querySelector('.excluirBtn');
-    //             excluirBtn.addEventListener('click', () => {
-    //                 const id = excluirBtn.dataset.id;
-    //                 if (confirm(`Tem certeza que deseja excluir esta montagem?`)) {
-    //                     fetch(`/deleteMontagem/${id}`, {
-    //                         method: 'DELETE'
-    //                     })
-    //                     .then(response => response.json())
-    //                     .then(data => {
-    //                         if (data.success) {
-    //                             console.log(data)
-    //                         alert(`${dado} excluída com sucesso.`);
-    //                             // Atualiza a lista de montagens após a exclusão
-    //                             editarMontagem.click();
-    //                         } else {
-    //                             alert(`Erro ao excluir montagem.`);
-    //                             console.log(data)
-    //                         }
-    //                     });
-    //                 }
-    //             });
-
+const excluirDados = (rota, nome) => {
+    const excluirBtn = document.querySelector('.excluirBtn');
+    excluirBtn.addEventListener('click', () => {
+        const id = excluirBtn.dataset.id;
+        if (confirm(`Tem certeza que deseja excluir esta ${nome}?`)) {
+            fetch(`/${rota}/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    console.log(data)
+                showAlert(`${nome} excluída com sucesso.`);
+                    // Atualiza a lista de montagens após a exclusão
+                    editarMontagem.click();
+                } else {
+                    alert(`Erro ao excluir ${nome}.`);
+                    console.log(data)
+                }
+            });
+        }
+    });
+}
