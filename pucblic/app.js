@@ -720,8 +720,8 @@ btnLimparEditar.addEventListener('click', () => {
 //funcao para deletar dados do banco de dados
 
 
-const excluirDados = (rota, nome) => {
-    const excluirBtn = document.querySelectorAll('.excluirBtn');
+const excluirDados = (rota, nome, data) => {
+    const excluirBtn = document.querySelector(`.excluirBtn`);
     excluirBtn.addEventListener('click', () => {
         const id = excluirBtn.dataset.id;
         if (confirm(`Tem certeza que deseja excluir esta ${nome}?`)) {
