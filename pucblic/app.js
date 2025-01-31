@@ -721,7 +721,7 @@ btnLimparEditar.addEventListener('click', () => {
 
 
 const excluirDados = (rota, nome) => {
-    const excluirBtn = document.querySelector('.excluirBtn');
+    const excluirBtn = document.querySelectorAll('.excluirBtn');
     excluirBtn.addEventListener('click', () => {
         const id = excluirBtn.dataset.id;
         if (confirm(`Tem certeza que deseja excluir esta ${nome}?`)) {
