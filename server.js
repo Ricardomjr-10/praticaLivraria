@@ -277,19 +277,21 @@ app.get('/filtroMontagem', (req, res) => {
        })
    })
 
-
-       app.delete(`/deleteMontagem/:id`, (req, res) => {
+const deletar = (rota, nome) => {
+       app.delete(`/${rota}/:id`, (req, res) => {
         const { id } = req.params
-        const sql = `DELETE FROM montagem WHERE id = ${id}`
+        const sql = `DELETE FROM ${nome} WHERE id = ${id}`
         conexao.query(sql, (err, result) => {
             if (err) {
                 res.send(err)
             } else {
-                res.json(`Montagem deletado com sucesso!`)
+                res.json(`${nome} deletado com sucesso!`)
             }
         })
     })
+}
    
+deletar('deleteMontagem', 'montagem')
 
 
 // //rota para validar cpf
