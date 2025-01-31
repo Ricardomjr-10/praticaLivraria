@@ -576,12 +576,13 @@ editarAutores.addEventListener('click', () => {
                     <span>CPF: ${autor.cpf}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
-                    <button class="excluirBtn btnEd">Excluir</button>
+                    <button class="excluirBtn btnEd" data-id="${autor.id}">Excluir</button>
                     </div>
                     <hr>
                 `;
                 editarResult.appendChild(autorDiv);
             })
+            excluirDados('deleteAutores', 'autor')
         })  
 })
 
@@ -605,12 +606,13 @@ editarFornecedores.addEventListener('click', () => {
                     <span>CNPJ: ${fornecedor.cnpj}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
-                    <button class="excluirBtn btnEd">Excluir</button>
+                    <button class="excluirBtn btnEd" data-id="${fornecedor.id}">Excluir</button>
                     </div>
                     <hr>
                 `;
                 editarResult.appendChild(fornecedorDiv);
             })
+            excluirDados('deleteFornecedores', 'fornecedor')
         })
 })
 
@@ -634,12 +636,13 @@ editarLivros.addEventListener('click', () => {
                     <span>ISBN: ${livro.isbn}</span> 
                     <div class="botaoEd">
                     <button class="editarBtn btnEd">Editar</button>
-                    <button class="excluirBtn btnEd">Excluir</button>
+                    <button class="excluirBtn btnEd" data-id="${livro.id}">Excluir</button>
                     </div>
                     <hr>
                 `;
                 editarResult.appendChild(livroDiv);
             })
+            excluirDados('deleteLivros', 'livro')
         })
 })
 
