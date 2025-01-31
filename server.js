@@ -297,6 +297,19 @@ deletar('deleteLivros', 'livros')
 deletar('deletePecas', 'pecas')
 deletar('deleteMontagem', 'montagem')
 
+app.put('/updateAutores/:id', (req, res) => {
+    const { id } = req.params
+    const { name, cpf, email } = req.body
+    const sql = `UPDATE autores SET name = '${name}', cpf = '${cpf}', email = '${email}' WHERE id = ${id}`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json('Autor atualizado com sucesso!')
+        }
+    })
+})
+
 
 
 // //rota para validar cpf

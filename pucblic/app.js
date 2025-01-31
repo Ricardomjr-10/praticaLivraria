@@ -575,7 +575,7 @@ editarAutores.addEventListener('click', () => {
                     <p>Nome: ${autor.name}</p>
                     <span>CPF: ${autor.cpf}</span> 
                     <div class="botaoEd">
-                    <button class="editarBtn btnEd">Editar</button>
+                    <button class="editarBtn btnEd" data-id="${autor.id}">Editar</button>
                     <button class="excluirBtn btnEd" data-id="${autor.id}">Excluir</button>
                     </div>
                     <hr>
@@ -583,6 +583,7 @@ editarAutores.addEventListener('click', () => {
                 editarResult.appendChild(autorDiv);
             })
             excluirDados('deleteAutores', 'autor')
+            editarDados('updateAutores')
         })  
 })
 
@@ -746,4 +747,28 @@ const excluirDados = (rota, nome) => {
             }
         });
     })
+}
+
+//funcao para editar os dados do banco de dados ao clicar no botao editar
+
+const editarDados = (rota) => {
+    const editarBtns = document.querySelectorAll(`.editarBtn`);
+
+    editarBtns.forEach(editarBtn => {
+        editarBtn.addEventListener('click', () => {
+            const id = editarBtn.dataset.id;
+            fetch(`/${rota}/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                  // Atualiza os campos do formulário com os dados do autor
+                    formAutor.innerHTML = `
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" value="${data.name}" required>
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" value="${data.cpf}" required>
+                    <button type="submit">Salvar Alterações</button>
+                `;
+                });
+        });
+    });
 }
