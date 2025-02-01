@@ -776,3 +776,29 @@ formAtualiazarAutores.addEventListener('submit', event => {
         }
     })
 })
+
+const editarAutor = () => {
+    const editarBtns = document.querySelectorAll('.editarBtn');
+
+    editarBtns.forEach(editarBtn => {
+        editarBtn.addEventListener('click', () => {
+           //aparecer o form AtualizandoAutores
+            formAtualiazarAutores.style.display = 'block';
+            //pegar os dados do autor que sera atualizado
+            const id = editarBtn.dataset.id;
+            fetch(`/getAutores/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    console.log(data)
+                    document.getElementById('atualizar').value = data.name;
+                    document.getElementById('atualizarCpf').value = data.cpf;
+                } else {
+                    alert('Erro ao buscar autor.');
+                    console.log(data)
+                }
+            })
+            
+        })
+    })
+}
