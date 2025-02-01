@@ -583,7 +583,7 @@ editarAutores.addEventListener('click', () => {
                 editarResult.appendChild(autorDiv);
             })
             excluirDados('deleteAutores', 'autor', editarAutores)
-            editarAutor()
+            
            
         })  
 })
@@ -752,54 +752,5 @@ const excluirDados = (rota, nome, atualiza) => {
 
 //funcao para editar os dados do banco de dados ao clicar no botao editar
 
-const formAtualiazarAutores = document.getElementById('AtualizandoAutores')
-formAtualiazarAutores.addEventListener('submit', event => {
-    event.preventDefault()
-    const name = document.getElementById('atualizar').value
-    const cpf = document.getElementById('atualizarCpf').value
 
-    fetch('/updateAutores', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, cpf })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data) {
-            console.log(data)
-            showAlert('Autor atualizado com sucesso.');
-            formAtualiazarAutores.reset();
-        } else {
-            alert('Erro ao atualizar autor.');
-            console.log(data)
-        }
-    })
-})
 
-const editarAutor = () => {
-    const editarBtns = document.querySelectorAll('.editarBtn');
-
-    editarBtns.forEach(editarBtn => {
-        editarBtn.addEventListener('click', () => {
-           //aparecer o form AtualizandoAutores
-            formAtualiazarAutores.style.display = 'block';
-            //pegar os dados do autor que sera atualizado
-            const id = editarBtn.dataset.id;
-            fetch(`/getAutores/${id}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    console.log(data)
-                    document.getElementById('atualizar').value = data.name;
-                    document.getElementById('atualizarCpf').value = data.cpf;
-                } else {
-                    alert('Erro ao buscar autor.');
-                    console.log(data)
-                }
-            })
-            
-        })
-    })
-}
