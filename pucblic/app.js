@@ -751,3 +751,28 @@ const excluirDados = (rota, nome, atualiza) => {
 
 //funcao para editar os dados do banco de dados ao clicar no botao editar
 
+const formAtualiazarAutores = document.getElementById('AtualizandoAutores')
+formAtualiazarAutores.addEventListener('submit', event => {
+    event.preventDefault()
+    const name = document.getElementById('atualizar').value
+    const cpf = document.getElementById('atualizarCpf').value
+
+    fetch('/updateAutores', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, cpf })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data) {
+            console.log(data)
+            showAlert('Autor atualizado com sucesso.');
+            formAtualiazarAutores.reset();
+        } else {
+            alert('Erro ao atualizar autor.');
+            console.log(data)
+        }
+    })
+})
