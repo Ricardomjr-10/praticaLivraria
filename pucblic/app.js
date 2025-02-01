@@ -583,6 +583,7 @@ editarAutores.addEventListener('click', () => {
                 editarResult.appendChild(autorDiv);
             })
             excluirDados('deleteAutores', 'autor', editarAutores)
+            editarAutor()
            
         })  
 })

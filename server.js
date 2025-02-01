@@ -310,6 +310,17 @@ app.put('/updateAutores/:id', (req, res) => {
     })
 })
 
+app.put('/getAutores/:id', (req, res) => {
+    const { id } = req.params
+    const sql = `SELECT * FROM autores WHERE id = ${id}`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json(result)
+        }
+    })
+})
 
 
 // //rota para validar cpf
