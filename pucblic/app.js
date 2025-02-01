@@ -583,7 +583,7 @@ editarAutores.addEventListener('click', () => {
                 editarResult.appendChild(autorDiv);
             })
             excluirDados('deleteAutores', 'autor')
-            editarDados('updateAutores')
+           
         })  
 })
 
@@ -707,7 +707,7 @@ editarMontagem.addEventListener('click', () => {
                
                 
             })
-            excluirDados('deleteMontagem', 'montagem')
+            excluirDados('deleteMontagem', 'montagem', editarMontagem)
            
         })
 })
@@ -721,7 +721,7 @@ btnLimparEditar.addEventListener('click', () => {
 //funcao para deletar dados do banco de dados
 
 
-const excluirDados = (rota, nome) => {
+const excluirDados = (rota, nome, atualiza) => {
     const excluirBtns = document.querySelectorAll(`.excluirBtn`);
 
     excluirBtns.forEach(excluirBtn => {
@@ -738,7 +738,7 @@ const excluirDados = (rota, nome) => {
                         console.log(data)
                     showAlert(`${nome} excluída com sucesso.`);
                         // Atualiza a lista de montagens após a exclusão
-                        editarMontagem.click();
+                        atualiza.click();
                     } else {
                         alert(`Erro ao excluir ${nome}.`);
                         console.log(data)
@@ -751,24 +751,3 @@ const excluirDados = (rota, nome) => {
 
 //funcao para editar os dados do banco de dados ao clicar no botao editar
 
-const editarDados = (rota) => {
-    const editarBtns = document.querySelectorAll(`.editarBtn`);
-
-    editarBtns.forEach(editarBtn => {
-        editarBtn.addEventListener('click', () => {
-            const id = editarBtn.dataset.id;
-            fetch(`/${rota}/${id}`)
-                .then(response => response.json())
-                .then(data => {
-                  // Atualiza os campos do formulário com os dados do autor
-                    formAutor.innerHTML = `
-                    <label for="name">Nome:</label>
-                    <input type="text" id="name" name="name" value="${data.name}" required>
-                    <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" name="cpf" value="${data.cpf}" required>
-                    <button type="submit">Salvar Alterações</button>
-                `;
-                });
-        });
-    });
-}
