@@ -582,7 +582,7 @@ editarAutores.addEventListener('click', () => {
                 `;
                 editarResult.appendChild(autorDiv);
             })
-            excluirDados('deleteAutores', 'autor')
+            excluirDados('deleteAutores', 'autor', editarAutores)
            
         })  
 })
@@ -613,7 +613,7 @@ editarFornecedores.addEventListener('click', () => {
                 `;
                 editarResult.appendChild(fornecedorDiv);
             })
-            excluirDados('deleteFornecedores', 'fornecedor')
+            excluirDados('deleteFornecedores', 'fornecedor', editarFornecedores)
         })
 })
 
@@ -643,7 +643,7 @@ editarLivros.addEventListener('click', () => {
                 `;
                 editarResult.appendChild(livroDiv);
             })
-            excluirDados('deleteLivros', 'livro')
+            excluirDados('deleteLivros', 'livro', editarLivros)
         })
 })
 
@@ -674,7 +674,7 @@ editarPecas.addEventListener('click', () => {
                 editarResult.appendChild(pecaDiv);
             })
 
-            excluirDados('deletePecas', 'peca')
+            excluirDados('deletePecas', 'peca', editarPecas)
         })
 })
 
