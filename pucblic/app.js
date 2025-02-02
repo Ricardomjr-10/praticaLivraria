@@ -593,17 +593,21 @@ const btnAtualizar = document.querySelectorAll('.editarBtn');
 btnAtualizar.forEach(btn => { 
     btn.addEventListener('click', () => {
         divAtualizar.style.display = 'block'
-        console.log(divAtualizar)
-        //pegar o valor dos inputs da divAtualizar, nome e cpf
-        const nameInput = document.getElementById('atualizar').value
-        const cpfInput = document.getElementById('atualizarCpf').value
+        
+        
+        
         const btnAtualizando = document.getElementById('btnAtualizando')
-
-        const id = btn.dataset.id;
-        const name = nameInput.value;
-        const cpf = cpfInput.value;
-
         btnAtualizando.addEventListener('click', () => {
+            //pegar o valor dos inputs da divAtualizar, nome e cpf
+            const nameInput = document.getElementById('atualizar').value
+            const cpfInput = document.getElementById('atualizarCpf').value
+    
+            const id = btn.dataset.id;
+            const name = nameInput;
+            const cpf = cpfInput;
+            //nao esta indo o valor dos inputs
+            console.log(id, name, cpf)
+            console.log(id, name, cpf)
             fetch(`/updateAutores/${id}`, {
                 method: 'PUT',
                 headers: {
