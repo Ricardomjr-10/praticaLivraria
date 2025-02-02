@@ -595,8 +595,8 @@ btnAtualizar.forEach(btn => {
         divAtualizar.style.display = 'block'
         
         
-        
         const btnAtualizando = document.getElementById('btnAtualizando')
+        
         btnAtualizando.addEventListener('click', () => {
             //pegar o valor dos inputs da divAtualizar, nome e cpf
             const nameInput = document.getElementById('atualizar').value
@@ -605,9 +605,7 @@ btnAtualizar.forEach(btn => {
             const id = btn.dataset.id;
             const name = nameInput;
             const cpf = cpfInput;
-            //nao esta indo o valor dos inputs
-            console.log(id, name, cpf)
-            console.log(id, name, cpf)
+
             fetch(`/updateAutores/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -621,7 +619,7 @@ btnAtualizar.forEach(btn => {
                     console.log(data)
                     showAlert('Autor atualizado com sucesso.');
                     // Atualiza a lista de montagens depois da atualizacao
-                    divAtualizar.click();
+                    editarAutores.click();
                 } else {
                     alert('Erro ao atualizar autor.');
                     console.log(data)
