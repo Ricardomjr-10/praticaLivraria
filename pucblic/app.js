@@ -595,8 +595,8 @@ btnAtualizar.forEach(btn => {
         divAtualizar.style.display = 'block'
         console.log(divAtualizar)
         //pegar o valor dos inputs da divAtualizar, nome e cpf
-        const nameInput = document.getElementById('atualizar')
-        const cpfInput = document.getElementById('atualizarCpf')
+        const nameInput = document.getElementById('atualizar').value
+        const cpfInput = document.getElementById('atualizarCpf').value
         const btnAtualizando = document.getElementById('btnAtualizando')
 
         const id = btn.dataset.id;
