@@ -620,6 +620,11 @@ btnAtualizar.forEach(btn => {
                     showAlert('Autor atualizado com sucesso.');
                     // Atualiza a lista de montagens depois da atualizacao
                     editarAutores.click();
+                    //limpar os inputs
+                    document.getElementById('atualizar').value = ''
+                    document.getElementById('atualizarCpf').value = ''
+                    //sumir a div
+                    divAtualizar.style.display = 'none'
                 } else {
                     alert('Erro ao atualizar autor.');
                     console.log(data)
