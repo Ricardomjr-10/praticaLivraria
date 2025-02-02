@@ -593,7 +593,7 @@ const btnAtualizar = document.querySelectorAll('.editarBtn');
 btnAtualizar.forEach(btn => { 
     btn.addEventListener('click', () => {
         divAtualizar.style.display = 'block'
-
+        console.log(divAtualizar)
         //pegar o valor dos inputs da divAtualizar, nome e cpf
         const nameInput = document.getElementById('atualizar')
         const cpfInput = document.getElementById('atualizarCpf')
