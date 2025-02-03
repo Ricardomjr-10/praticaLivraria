@@ -34,8 +34,8 @@ formAutor.addEventListener('submit', (event) => {
 
     const formData = new FormData(formAutor);
     const data = Object.fromEntries(formData);
-    
-   if (validarCPF(cpfInput.value) === 'CPF inválido') {
+
+    if (validarCPF(cpfInput.value) === 'CPF inválido') {
         showAlert('CPF inválido');
         return;
     }
@@ -338,7 +338,7 @@ formFiltroLivro.addEventListener('submit', event => {
 
     const tituloFiltro = document.getElementById('buscarLivro').value
     const autorFiltro = document.getElementById('autorBuscar').value
-   
+
     if (tituloFiltro === '' && autorFiltro === '') {
         showAlert('Preencha pelo menos um campo para realizar a busca.');
         //alert('Preencha pelo menos um campo para realizar a busca.');
@@ -428,7 +428,7 @@ formFiltroMontagem.addEventListener('submit', event => {
             const montagemResult = document.querySelector('.montaResult');
             montagemResult.innerHTML = `<p>Erro ao buscar montagens: ${error.message}</p>`;
         })
-})  
+})
 
 relatorioAutores.addEventListener('click', () => {
     //rota com nome dos autores e seus livros
@@ -455,8 +455,8 @@ relatorioAutores.addEventListener('click', () => {
             })
         })
 })
-           
-   relatorioFornecedores.addEventListener('click', () => {
+
+relatorioFornecedores.addEventListener('click', () => {
     fetch('/relatorioFornecedores')
         .then(response => response.json())
         .then(data => {
@@ -481,7 +481,7 @@ relatorioAutores.addEventListener('click', () => {
             })
         })
 })
-            
+
 
 relatorioLivros.addEventListener('click', () => {
     fetch('/relatorioMontagem')
@@ -570,7 +570,7 @@ editarAutores.addEventListener('click', () => {
                 return; // Impede que o loop continue sem dados
             }
 
-            data.forEach(autor => { 
+            data.forEach(autor => {
                 const autorDiv = document.createElement('div');
                 autorDiv.innerHTML = `
                     <p>Nome: ${autor.name}</p>
@@ -586,10 +586,10 @@ editarAutores.addEventListener('click', () => {
             excluirDados('deleteAutores', 'autor', editarAutores)
 
             /////////////
-edit('atualizandoAutores', 'btnAtualizando', 'atualizar', 'atualizarCpf', 'updateAutores', 'autor')
-            
-           
-        })  
+            edit('atualizandoAutores', 'btnAtualizando', 'atualizar', 'atualizarCpf', 'updateAutores', 'autor')
+
+
+        })
 })
 
 editarFornecedores.addEventListener('click', () => {
@@ -710,11 +710,11 @@ editarMontagem.addEventListener('click', () => {
                 `;
                 editarResult.appendChild(montagemDiv);
 
-               
-                
+
+
             })
             excluirDados('deleteMontagem', 'montagem', editarMontagem)
-           
+
         })
 })
 
@@ -738,18 +738,18 @@ const excluirDados = (rota, nome, atualiza) => {
                 fetch(`/${rota}/${id}`, {
                     method: 'DELETE'
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data) {
-                        console.log(data)
-                    showAlert(`${nome} excluída com sucesso.`);
-                        // Atualiza a lista de montagens após a exclusão
-                        atualiza.click();
-                    } else {
-                        alert(`Erro ao excluir ${nome}.`);
-                        console.log(data)
-                    }
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            console.log(data)
+                            showAlert(`${nome} excluída com sucesso.`);
+                            // Atualiza a lista de montagens após a exclusão
+                            atualiza.click();
+                        } else {
+                            alert(`Erro ao excluir ${nome}.`);
+                            console.log(data)
+                        }
+                    });
             }
         });
     })
@@ -761,23 +761,25 @@ const edit = (idDivAtualizar, idBotao, idInputName, idInputCpf, rota, nomeTabela
 
     const divAtualizar = document.getElementById(idDivAtualizar);
     const btnAtualizar = document.querySelectorAll('.editarBtn');
-    
-    btnAtualizar.forEach(btn => { 
+
+    btnAtualizar.forEach(btn => {
         btn.addEventListener('click', () => {
             divAtualizar.style.display = 'block'
-            
-            
+
+
             const btnAtualizando = document.getElementById(idBotao)
-            
+
             btnAtualizando.addEventListener('click', () => {
                 //pegar o valor dos inputs da divAtualizar, nome e cpf
                 const nameInput = document.getElementById(idInputName).value
                 const cpfInput = document.getElementById(idInputCpf).value
-        
+
                 const id = btn.dataset.id;
                 const name = nameInput;
                 const cpf = cpfInput;
-    
+
+                console.log(id, name, cpf)
+
                 fetch(`/${rota}/${id}`, {
                     method: 'PUT',
                     headers: {
@@ -785,25 +787,25 @@ const edit = (idDivAtualizar, idBotao, idInputName, idInputCpf, rota, nomeTabela
                     },
                     body: JSON.stringify({ name, cpf })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data) {
-                        console.log(data)
-                        showAlert(`${nomeTabela} atualizado com sucesso.`);
-                        // Atualiza a lista de montagens depois da atualizacao
-                        editarAutores.click();
-                        //limpar os inputs
-                        document.getElementById(idInputName).value = ''
-                        document.getElementById(idInputCpf).value = ''
-                        //sumir a div
-                        divAtualizar.style.display = 'none'
-                    } else {
-                        alert(`Erro ao atualizar ${nomeTabela}.`);
-                        console.log(data)
-                    }
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            console.log(data)
+                            showAlert(`${nomeTabela} atualizado com sucesso.`);
+                            // Atualiza a lista de montagens depois da atualizacao
+                            editarAutores.click();
+                            //limpar os inputs
+                            document.getElementById(idInputName).value = ''
+                            document.getElementById(idInputCpf).value = ''
+                            //sumir a div
+                            divAtualizar.style.display = 'none'
+                        } else {
+                            alert(`Erro ao atualizar ${nomeTabela}.`);
+                            console.log(data)
+                        }
+                    });
             })
-            
+
         })
     })
 }
