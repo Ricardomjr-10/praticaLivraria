@@ -313,8 +313,8 @@ app.put('/updateAutores/:id', (req, res) => {
 
 app.put('/updateFornecedores/:id', (req, res) => {
     const { id } = req.params
-    const { name, cnpj } = req.body
-    const sql = `UPDATE fornecedores SET name = '${name}', cnpj = '${cnpj}' WHERE id = ${id}`
+    const { name, cpf } = req.body
+    const sql = `UPDATE fornecedores SET name = '${name}', cnpj = '${cpf}' WHERE id = ${id}`
     conexao.query(sql, (err, result) => {
         if (err) {
             res.send(err)
