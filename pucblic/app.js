@@ -611,7 +611,7 @@ editarFornecedores.addEventListener('click', () => {
                     <p>Nome: ${fornecedor.name}</p>
                     <span>CNPJ: ${fornecedor.cnpj}</span> 
                     <div class="botaoEd">
-                    <button class="editarBtn btnEd"$ data-id="${fornecedor.id}>Editar</button>
+                    <button class="editarBtn btnEd"  data-id="${fornecedor.id}>Editar</button>
                     <button class="excluirBtn btnEd" data-id="${fornecedor.id}">Excluir</button>
                     </div>
                     <hr>
@@ -767,6 +767,8 @@ const edit = (idDivAtualizar, idBotao, idInputName, idInputCpf, rota, nomeTabela
             divAtualizar.style.display = 'block'
 
 
+            const id = btn.dataset.id;
+
             const btnAtualizando = document.getElementById(idBotao)
 
             btnAtualizando.addEventListener('click', () => {
@@ -774,7 +776,6 @@ const edit = (idDivAtualizar, idBotao, idInputName, idInputCpf, rota, nomeTabela
                 const nameInput = document.getElementById(idInputName).value
                 const cpfInput = document.getElementById(idInputCpf).value
 
-                const id = btn.dataset.id;
                 const name = nameInput;
                 const cpf = cpfInput;
 
