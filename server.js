@@ -311,6 +311,58 @@ app.put('/updateAutores/:id', (req, res) => {
     })
 })
 
+app.put('/updateFornecedores/:id', (req, res) => {
+    const { id } = req.params
+    const { name, cnpj } = req.body
+    const sql = `UPDATE fornecedores SET name = '${name}', cnpj = '${cnpj}' WHERE id = ${id}`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json('Fornecedor atualizado com sucesso!')
+        }
+    })
+})
+
+app.put('/updateLivros/:id', (req, res) => {
+    const { id } = req.params
+    const { titulo, isbn } = req.body
+    const sql = `UPDATE livros SET titulo = '${titulo}', isbn = '${isbn}' WHERE id = ${id}`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json('Livro atualizado com sucesso!')
+        }
+    })
+})
+
+app.put('/updatePecas/:id', (req, res) => {
+    const { id } = req.params
+    const { name, valor } = req.body
+    const sql = `UPDATE pecas SET name = '${name}', valor = ${valor} WHERE id = ${id}`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json('Peca atualizada com sucesso!')
+        }
+    })
+})
+
+app.put('/updateMontagem/:id', (req, res) => {
+    const { id } = req.params
+    const { name, livro_id } = req.body
+    const sql = `UPDATE montagem SET name = '${name}', livro_id = ${livro_id} WHERE id = ${id}`
+    conexao.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json('Montagem atualizada com sucesso!')
+        }
+    })
+})
+
 // //rota para validar cpf
 // app.get('/validar-cpf/:cpf', (req, res) => {
 //     const { cpf } = req.params
