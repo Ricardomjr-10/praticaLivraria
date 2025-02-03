@@ -27,7 +27,7 @@ const relatorioLivros = document.getElementById('btnLivroMontagem')
 const alertDiv = document.getElementById('alert');
 const overlay = document.getElementById('overlay');
 const closeBtn = document.getElementById('closeBtn');
-const divAtualizar = document.querySelector('#atualizandoAutores')
+
 
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -804,45 +804,56 @@ const excluirDados = (rota, nome, atualiza) => {
 }
 
 //funcao para editar os dados do banco de dados ao clicar no botao editar
-// const divAtualizar = document.querySelector('#atualizandoAutores')
-// const btnAtualizar = document.querySelectorAll('.editarBtn');
 
-// btnAtualizar.forEach(btn => { 
-//     btn.addEventListener('click', () => {
-//         divAtualizar.style.display = 'block'
-
-//         //pegar o valor dos inputs da divAtualizar, nome e cpf
-//         const nameInput = document.getElementById('atualizar')
-//         const cpfInput = document.getElementById('atualizarCpf')
-//         const btnAtualizando = document.getElementById('btnAtualizando')
-
-//         const id = btn.dataset.id;
-//         const name = nameInput.value;
-//         const cpf = cpfInput.value;
-
-//         btnAtualizando.addEventListener('click', () => {
-//             fetch(`/updateAutores/${id}`, {
-//                 method: 'PUT',
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body: JSON.stringify({ name, cpf })
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 if (data) {
-//                     console.log(data)
-//                     showAlert('Autor atualizado com sucesso.');
-//                     // Atualiza a lista de montagens depois da atualizacao
-//                     divAtualizar.click();
-//                 } else {
-//                     alert('Erro ao atualizar autor.');
-//                     console.log(data)
-//                 }
-//             });
-//         })
+const edit = (idDivAtualizar) => {
+    const divAtualizar = document.getElementById(idDivAtualizar);
+    const btnAtualizar = document.querySelectorAll('.editarBtn');
+    
+    btnAtualizar.forEach(btn => { 
+        btn.addEventListener('click', () => {
+            divAtualizar.style.display = 'block'
+            
+            
+            const btnAtualizando = document.getElementById('btnAtualizando')
+            
+            btnAtualizando.addEventListener('click', () => {
+                //pegar o valor dos inputs da divAtualizar, nome e cpf
+                const nameInput = document.getElementById('atualizar').value
+                const cpfInput = document.getElementById('atualizarCpf').value
         
-//     })
-// })
+                const id = btn.dataset.id;
+                const name = nameInput;
+                const cpf = cpfInput;
+    
+                fetch(`/updateAutores/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, cpf })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        console.log(data)
+                        showAlert('Autor atualizado com sucesso.');
+                        // Atualiza a lista de montagens depois da atualizacao
+                        editarAutores.click();
+                        //limpar os inputs
+                        document.getElementById('atualizar').value = ''
+                        document.getElementById('atualizarCpf').value = ''
+                        //sumir a div
+                        divAtualizar.style.display = 'none'
+                    } else {
+                        alert('Erro ao atualizar autor.');
+                        console.log(data)
+                    }
+                });
+            })
+            
+        })
+    })
+}
+
 
 
