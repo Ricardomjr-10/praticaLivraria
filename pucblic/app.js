@@ -586,7 +586,7 @@ editarAutores.addEventListener('click', () => {
             excluirDados('deleteAutores', 'autor', editarAutores)
 
             /////////////
-
+edit('divAtualizar', 'atualizar', 'atualizarCpf', 'updateAutores', 'autor')
             
 const btnAtualizar = document.querySelectorAll('.editarBtn');
 
@@ -805,7 +805,8 @@ const excluirDados = (rota, nome, atualiza) => {
 
 //funcao para editar os dados do banco de dados ao clicar no botao editar
 
-const edit = (idDivAtualizar) => {
+const edit = (idDivAtualizar, idInputName, idInputCpf, rota, nomeTabela) => {
+    
     const divAtualizar = document.getElementById(idDivAtualizar);
     const btnAtualizar = document.querySelectorAll('.editarBtn');
     
@@ -818,14 +819,14 @@ const edit = (idDivAtualizar) => {
             
             btnAtualizando.addEventListener('click', () => {
                 //pegar o valor dos inputs da divAtualizar, nome e cpf
-                const nameInput = document.getElementById('atualizar').value
-                const cpfInput = document.getElementById('atualizarCpf').value
+                const nameInput = document.getElementById(idInputName).value
+                const cpfInput = document.getElementById(idInputCpf).value
         
                 const id = btn.dataset.id;
                 const name = nameInput;
                 const cpf = cpfInput;
     
-                fetch(`/updateAutores/${id}`, {
+                fetch(`/${rota}/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -836,16 +837,16 @@ const edit = (idDivAtualizar) => {
                 .then(data => {
                     if (data) {
                         console.log(data)
-                        showAlert('Autor atualizado com sucesso.');
+                        showAlert(`${nomeTabela} atualizado com sucesso.`);
                         // Atualiza a lista de montagens depois da atualizacao
                         editarAutores.click();
                         //limpar os inputs
-                        document.getElementById('atualizar').value = ''
-                        document.getElementById('atualizarCpf').value = ''
+                        document.getElementById(idInputName).value = ''
+                        document.getElementById(idInputCpf).value = ''
                         //sumir a div
                         divAtualizar.style.display = 'none'
                     } else {
-                        alert('Erro ao atualizar autor.');
+                        alert(`Erro ao atualizar ${nomeTabela}.`);
                         console.log(data)
                     }
                 });
