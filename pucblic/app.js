@@ -29,11 +29,22 @@ const overlay = document.getElementById('overlay');
 const closeBtn = document.getElementById('closeBtn');
 
 
+
 formAutor.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const formData = new FormData(formAutor);
     const data = Object.fromEntries(formData);
+
+    if (validarCPF(cpfInput.value) === 'CPF inválido') {
+        showAlert('CPF inválido');
+        return;
+    }
+
+    if (validarCPF(cpfInput.value) === 'CPF inválido') {
+        showAlert('CPF inválido');
+        return;
+    }
 
     if (validarCPF(cpfInput.value) === 'CPF inválido') {
         showAlert('CPF inválido');
@@ -339,6 +350,7 @@ formFiltroLivro.addEventListener('submit', event => {
     const tituloFiltro = document.getElementById('buscarLivro').value
     const autorFiltro = document.getElementById('autorBuscar').value
 
+
     if (tituloFiltro === '' && autorFiltro === '') {
         showAlert('Preencha pelo menos um campo para realizar a busca.');
         //alert('Preencha pelo menos um campo para realizar a busca.');
@@ -483,6 +495,9 @@ relatorioFornecedores.addEventListener('click', () => {
 })
 
 
+
+
+
 relatorioLivros.addEventListener('click', () => {
     fetch('/relatorioMontagem')
         .then(response => response.json())
@@ -586,7 +601,7 @@ editarAutores.addEventListener('click', () => {
             excluirDados('deleteAutores', 'autor', editarAutores)
 
             /////////////
-            edit('atualizandoAutores', 'btnAtualizando', 'atualizar', 'atualizarCpf', 'updateAutores', 'autor')
+            edit('atualizandoAutores', 'btnAtualizando', 'atualizar', 'atualizarCpf', 'updateAutores', 'autor', editarAutores)
 
 
         })
@@ -611,7 +626,7 @@ editarFornecedores.addEventListener('click', () => {
                     <p>Nome: ${fornecedor.name}</p>
                     <span>CNPJ: ${fornecedor.cnpj}</span> 
                     <div class="botaoEd">
-                    <button class="editarBtn btnEd"  data-id="${fornecedor.id}>Editar</button>
+                    <button class="editarBtn btnEd" data-id="${fornecedor.id}">Editar</button>
                     <button class="excluirBtn btnEd" data-id="${fornecedor.id}">Excluir</button>
                     </div>
                     <hr>
@@ -619,7 +634,7 @@ editarFornecedores.addEventListener('click', () => {
                 editarResult.appendChild(fornecedorDiv);
             })
             excluirDados('deleteFornecedores', 'fornecedor', editarFornecedores)
-            edit('atualizandoFornecedores', 'btnAtualizandoFornecedores', 'atualizarNome', 'atualizarCnpj', 'updateFornecedores', 'fornecedor')
+            edit('atualizandoFornecedores', 'btnAtualizandoFornecedores', 'atualizarNome', 'atualizarCnpj', 'updateFornecedores', 'fornecedor', editarFornecedores)
         })
 })
 
@@ -642,7 +657,7 @@ editarLivros.addEventListener('click', () => {
                     <p>Título: ${livro.titulo}</p>
                     <span>ISBN: ${livro.isbn}</span> 
                     <div class="botaoEd">
-                    <button class="editarBtn btnEd">Editar</button>
+                    <button class="editarBtn btnEd" data-id="${livro.id}">Editar</button>
                     <button class="excluirBtn btnEd" data-id="${livro.id}">Excluir</button>
                     </div>
                     <hr>
@@ -650,6 +665,7 @@ editarLivros.addEventListener('click', () => {
                 editarResult.appendChild(livroDiv);
             })
             excluirDados('deleteLivros', 'livro', editarLivros)
+            edit('atualizandoLivros', 'btnAtualizandoLivros', 'atualizarTitulo', 'atualizarISBN', 'updateLivros', 'livro', editarLivros)
         })
 })
 
@@ -672,7 +688,7 @@ editarPecas.addEventListener('click', () => {
                     <p>Nome: ${peca.name}</p>
                     <span>Valor: ${peca.valor}</span> 
                     <div class="botaoEd">
-                    <button class="editarBtn btnEd">Editar</button>
+                    <button class="editarBtn btnEd" data-id="${peca.id}">Editar</button>
                     <button class="excluirBtn btnEd" data-id="${peca.id}">Excluir</button>
                     </div>
                     <hr>
@@ -681,6 +697,7 @@ editarPecas.addEventListener('click', () => {
             })
 
             excluirDados('deletePecas', 'peca', editarPecas)
+            edit('atualizandoPecas', 'btnAtualizandoPecas', 'atualizarNomePeca', 'atualizarValor', 'updatePecas', 'peca', editarPecas)
         })
 })
 
@@ -703,7 +720,7 @@ editarMontagem.addEventListener('click', () => {
                     <p>Nome: ${montagem.name}</p>
                     <span>Livro: ${montagem.livro_id}</span> 
                     <div class="botaoEd">
-                    <button class="editarBtn btnEd">Editar</button>
+                    <button class="editarBtn btnEd" data-id="${montagem.id}">Editar</button>
                     <button class="excluirBtn btnEd" data-id="${montagem.id}">Excluir</button>
                     </div>
                     <hr>
@@ -712,8 +729,11 @@ editarMontagem.addEventListener('click', () => {
 
 
 
+
+
             })
             excluirDados('deleteMontagem', 'montagem', editarMontagem)
+            edit('atualizandoMontagem', 'btnAtualizandoMontagem', 'atualizarNomeMontagem', 'atualizarLivroMontagem', 'updateMontagem', 'montagem', editarMontagem)
 
         })
 })
@@ -757,30 +777,33 @@ const excluirDados = (rota, nome, atualiza) => {
 
 //funcao para editar os dados do banco de dados ao clicar no botao editar
 
-const edit = (idDivAtualizar, idBotao, idInputName, idInputCpf, rota, nomeTabela) => {
+
+const edit = (idDivAtualizar, idBotao, idInputName, idInputCpf, rota, nomeTabela, editarNomeLista) => {
 
     const divAtualizar = document.getElementById(idDivAtualizar);
     const btnAtualizar = document.querySelectorAll('.editarBtn');
 
     btnAtualizar.forEach(btn => {
         btn.addEventListener('click', () => {
-            divAtualizar.style.display = 'block'
-
+            divAtualizar.style.display = 'block';
 
             const id = btn.dataset.id;
 
-            const btnAtualizando = document.getElementById(idBotao)
+            const btnEditar = document.getElementById(idBotao);
 
-            btnAtualizando.addEventListener('click', () => {
-                //pegar o valor dos inputs da divAtualizar, nome e cpf
-                const nameInput = document.getElementById(idInputName).value
-                const cpfInput = document.getElementById(idInputCpf).value
-
+            // *** KEY CHANGE: Remove existing listeners before adding a new one ***
+            btnEditar.addEventListener('click', updateHandler);
+            
+            // Define the updateHandler function *outside* the click listener
+            function updateHandler() {
+                const nameInput = document.getElementById(idInputName).value;
+                const cpfInput = document.getElementById(idInputCpf).value;
+                
                 const name = nameInput;
                 const cpf = cpfInput;
-
-                console.log(id, name, cpf)
-
+                
+                console.log(id, + 'id' + name, + 'name' + cpf);
+                
                 fetch(`/${rota}/${id}`, {
                     method: 'PUT',
                     headers: {
@@ -788,28 +811,78 @@ const edit = (idDivAtualizar, idBotao, idInputName, idInputCpf, rota, nomeTabela
                     },
                     body: JSON.stringify({ name, cpf })
                 })
-                    .then(response => response.json())
-                    .then(data => {
+                .then(response => response.json())
+                .then(data => {
+                        btnEditar.removeEventListener('click', updateHandler); // See below
                         if (data) {
-                            console.log(data)
+                            console.log(data);
                             showAlert(`${nomeTabela} atualizado com sucesso.`);
-                            // Atualiza a lista de montagens depois da atualizacao
-                            editarAutores.click();
-                            //limpar os inputs
-                            document.getElementById(idInputName).value = ''
-                            document.getElementById(idInputCpf).value = ''
-                            //sumir a div
-                            divAtualizar.style.display = 'none'
+                            editarNomeLista.click(); // Refresh the list
+                            document.getElementById(idInputName).value = ''; // Clear inputs
+                            document.getElementById(idInputCpf).value = '';
+                            divAtualizar.style.display = 'none'; // Hide the edit div
                         } else {
                             alert(`Erro ao atualizar ${nomeTabela}.`);
-                            console.log(data)
+                            console.log(data);
                         }
                     });
-            })
+            }
+        });
+    });
+};
+// const edit = (idDivAtualizar, idBotao, idInputName, idInputCpf, rota, nomeTabela) => {
 
-        })
-    })
-}
+//     const divAtualizar = document.getElementById(idDivAtualizar);
+//     const btnAtualizar = document.querySelectorAll('.editarBtn');
+
+//     btnAtualizar.forEach(btn => {
+//         btn.addEventListener('click', () => {
+//             divAtualizar.style.display = 'block'
+
+
+//             const id = btn.dataset.id;
+
+//             const btnAtualizando = document.getElementById(idBotao)
+
+//             btnAtualizando.addEventListener('click', () => {
+//                 //pegar o valor dos inputs da divAtualizar, nome e cpf
+//                 const nameInput = document.getElementById(idInputName).value
+//                 const cpfInput = document.getElementById(idInputCpf).value
+
+//                 const name = nameInput;
+//                 const cpf = cpfInput;
+
+//                 console.log(id, name, cpf)
+
+//                 fetch(`/${rota}/${id}`, {
+//                     method: 'PUT',
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     },
+//                     body: JSON.stringify({ name, cpf })
+//                 })
+//                     .then(response => response.json())
+//                     .then(data => {
+//                         if (data) {
+//                             console.log(data)
+//                             showAlert(`${nomeTabela} atualizado com sucesso.`);
+//                             // Atualiza a lista de montagens depois da atualizacao
+//                             editarAutores.click();
+//                             //limpar os inputs
+//                             document.getElementById(idInputName).value = ''
+//                             document.getElementById(idInputCpf).value = ''
+//                             //sumir a div
+//                             divAtualizar.style.display = 'none'
+//                         } else {
+//                             alert(`Erro ao atualizar ${nomeTabela}.`);
+//                             console.log(data)
+//                         }
+//                     });
+//             })
+
+//         })
+//     })
+// }
 
 
 
